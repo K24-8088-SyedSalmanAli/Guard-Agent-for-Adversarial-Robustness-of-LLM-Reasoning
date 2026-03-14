@@ -1,0 +1,443 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "description": "30 threat scenarios for Guard Agent Week 1 baseline evaluation",
+        "categories": {
+            "BEC Payment Fraud": 4,
+            "Invoice Fraud": 3,
+            "Data Tampering": 3,
+            "Network Intrusion": 4,
+            "Insider Threat": 3,
+            "Ransomware": 2,
+            "Phishing": 2,
+            "DDoS": 1,
+            "Brute Force": 1,
+            "Benign/Normal": 7
+        },
+        "total_scenarios": 30,
+        "attack_scenarios": 23,
+        "benign_scenarios": 7
+    },
+    "scenarios": [
+        {
+            "id": "SC-001",
+            "event_description": "Accounts payable received an email from supplier TechParts Inc. requesting immediate bank account change for a $2.3M quarterly payment. The email originated from techparts-inc.com (normal domain is techparts.com). The new bank account is registered in a different country (Cayman Islands) than the supplier's known location (Germany). The email contains urgency language: 'Please process before end of business today to avoid supply disruption.' No prior communication about banking changes exists in the last 12 months.",
+            "timestamp": "2025-03-15T14:23:00Z",
+            "source_org": "AutoCorp Manufacturing (OEM)",
+            "event_type": "Email + Transaction Anomaly",
+            "data_source": "Business Transaction Monitor + Email Gateway",
+            "ground_truth": {
+                "classification": "BEC Payment Fraud",
+                "severity": 5,
+                "attack_techniques": ["T1566.002", "T1534"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-002",
+            "event_description": "A purchase order PO-78432 was submitted for 50,000 units of Grade-A titanium alloy from a new supplier 'MetalWorks Global Ltd' not present in the approved vendor database. The PO was approved by a procurement manager who joined the company 3 weeks ago. Total value: $1.8M. The supplier's business registration was created 2 months ago. Payment terms request 100% advance payment, deviating from the standard 30/60/90 net terms.",
+            "timestamp": "2025-04-02T09:15:00Z",
+            "source_org": "AeroMfg Components",
+            "event_type": "Transaction Anomaly",
+            "data_source": "ERP System + Procurement Module",
+            "ground_truth": {
+                "classification": "BEC Payment Fraud",
+                "severity": 5,
+                "attack_techniques": ["T1078", "T1566"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-003",
+            "event_description": "Three duplicate invoices (INV-2025-4401, INV-2025-4401a, INV-2025-4401b) submitted by supplier SteelCo within 48 hours for the same shipment (Shipment #SH-9921). Total duplicate amount: $430,000. The second and third invoices have slightly modified line item descriptions but identical totals. The invoices were submitted from the supplier's verified email address but during non-business hours (2:30 AM local time).",
+            "timestamp": "2025-03-28T02:30:00Z",
+            "source_org": "BuildRight Industries",
+            "event_type": "Transaction Anomaly",
+            "data_source": "Accounts Payable System",
+            "ground_truth": {
+                "classification": "Invoice Fraud",
+                "severity": 4,
+                "attack_techniques": ["T1565.001"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-004",
+            "event_description": "Invoice INV-7823 from ChemSupply Corp originally submitted for $125,000 was resubmitted with amount changed to $312,500 (150% increase). The modification was made after the invoice had passed initial approval workflow. Audit log shows the edit was performed using API access token AT-8832, which is assigned to an integration service account. The service account's last password rotation was 14 months ago.",
+            "timestamp": "2025-05-10T16:45:00Z",
+            "source_org": "PharmaCraft Manufacturing",
+            "event_type": "Transaction Modification Alert",
+            "data_source": "ERP Audit Trail",
+            "ground_truth": {
+                "classification": "Invoice Fraud",
+                "severity": 4,
+                "attack_techniques": ["T1565.001", "T1078.004"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-005",
+            "event_description": "Quality certification record for Batch #BT-2025-0442 (active pharmaceutical ingredient, Acetaminophen) was modified at 2:47 AM. The purity value was changed from 94.2% to 99.1%. The modification was performed by user 'wh_operator_12' (warehouse operator role) who does not have quality record edit permissions in the RBAC system. The original QC report was signed by Lab Technician LT-0089 and had passed regulatory review. No change request ticket exists in the system.",
+            "timestamp": "2025-06-12T02:47:00Z",
+            "source_org": "MediPharma Supplies",
+            "event_type": "Data Integrity Violation",
+            "data_source": "Quality Management System + RBAC Audit Log",
+            "ground_truth": {
+                "classification": "Data Tampering",
+                "severity": 5,
+                "attack_techniques": ["T1565.001"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-006",
+            "event_description": "Inventory database records for warehouse WH-03 show 847 entries modified in a 15-minute window. Modifications include quantity changes for raw materials (aluminum sheets, copper wire, resistor packs), all reduced by 10-15%. The modifications were performed using database admin credentials from IP 10.42.8.199, which resolves to a workstation in the finance department. Normal inventory adjustments average 20-30 entries per day during business hours.",
+            "timestamp": "2025-04-18T23:12:00Z",
+            "source_org": "ElectroMfg Corp",
+            "event_type": "Bulk Data Modification",
+            "data_source": "Inventory Database Audit Log",
+            "ground_truth": {
+                "classification": "Data Tampering",
+                "severity": 4,
+                "attack_techniques": ["T1565.001", "T1078"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-007",
+            "event_description": "Shipping manifest for container CNTR-88210 was altered after customs clearance. The declared weight changed from 22,400 kg to 18,200 kg, and the HS code was modified from 8542.31 (semiconductor devices) to 8471.30 (portable computers). The edit originated from the logistics partner's VPN (IP 203.45.67.89) using credentials of an employee who is currently on medical leave. The container is in transit from Shenzhen to Rotterdam.",
+            "timestamp": "2025-05-22T11:30:00Z",
+            "source_org": "ChipFab Semiconductor",
+            "event_type": "Document Modification Alert",
+            "data_source": "Supply Chain Visibility Platform + Customs Integration",
+            "ground_truth": {
+                "classification": "Data Tampering",
+                "severity": 4,
+                "attack_techniques": ["T1565.001", "T1078"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-008",
+            "event_description": "Network IDS detected 14,000 connection attempts to the SCADA controller (IP 10.0.1.50) on port 502 (Modbus/TCP) over 30 minutes from internal IP 10.0.5.211. The source IP belongs to a contractor's laptop connected to the guest WiFi network. The SCADA controller manages CNC machine operations on the production floor. Normal Modbus traffic from authorized HMI stations averages 200 connections per hour. The contractor's VPN session started 4 hours ago but their physical badge shows no building entry today.",
+            "timestamp": "2025-03-20T08:15:00Z",
+            "source_org": "PrecisionMfg Inc",
+            "event_type": "Network Intrusion Attempt",
+            "data_source": "Network IDS + Badge Access System",
+            "ground_truth": {
+                "classification": "Network Intrusion",
+                "severity": 5,
+                "attack_techniques": ["T1133", "T1071", "T1046"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-009",
+            "event_description": "Firewall logs show sustained outbound connections from production server PROD-DB-01 (10.0.2.15) to external IP 185.220.101.34 (known Tor exit node) on port 443. Data transfer: 2.3 GB uploaded over 6 hours. The server hosts the manufacturing execution system (MES) database containing proprietary production recipes, machine parameters, and customer order details. No scheduled backup or sync job targets this external IP. The connection started 30 minutes after a software update was applied by IT staff.",
+            "timestamp": "2025-04-05T01:30:00Z",
+            "source_org": "AdvancedMaterials Corp",
+            "event_type": "Data Exfiltration Alert",
+            "data_source": "Firewall + NetFlow Analysis",
+            "ground_truth": {
+                "classification": "Network Intrusion",
+                "severity": 5,
+                "attack_techniques": ["T1041", "T1071.001", "T1048"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-010",
+            "event_description": "Multiple failed SSH login attempts (342 in 1 hour) detected on jump server JS-01 (10.0.0.5) from external IP 91.134.22.176 (geolocated to Eastern Europe). Attempts use a rotating list of usernames including 'admin', 'root', 'mfgadmin', 'scadaadmin', and 'aborting'. After 342 failures, a successful login occurred with username 'svc_backup' at attempt 343. The svc_backup account was created 6 months ago for a decommissioned backup solution and was never disabled.",
+            "timestamp": "2025-05-01T03:20:00Z",
+            "source_org": "GlobalParts Manufacturing",
+            "event_type": "Authentication Anomaly",
+            "data_source": "SSH Server Logs + Authentication System",
+            "ground_truth": {
+                "classification": "Brute Force",
+                "severity": 5,
+                "attack_techniques": ["T1110.001", "T1078.001"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-011",
+            "event_description": "VPN connection established from IP 103.28.44.67 (Vietnam) using credentials of IT administrator 'j.miller'. j.miller's badge records show he is currently in the office (Chicago, USA). The VPN session accessed the ERP system and downloaded a complete vendor master list (4,200 records including banking details) and the approved supplier pricing database. Session duration: 47 minutes. j.miller's actual workstation (10.0.3.22) was active with a different session simultaneously.",
+            "timestamp": "2025-06-01T07:45:00Z",
+            "source_org": "MegaMfg Industries",
+            "event_type": "Credential Compromise Alert",
+            "data_source": "VPN Gateway + Badge System + DLP",
+            "ground_truth": {
+                "classification": "Network Intrusion",
+                "severity": 5,
+                "attack_techniques": ["T1133", "T1078", "T1005"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-012",
+            "event_description": "Port scan detected across the entire OT network segment (10.0.1.0/24) targeting ports 502 (Modbus), 44818 (EtherNet/IP), 102 (S7comm), and 20000 (DNP3). The scan originated from a recently provisioned IoT sensor (10.0.1.230) deployed on the production floor for temperature monitoring. The sensor's firmware version is 2.1.3, while the manufacturer's latest version is 3.4.1. The scan completed a full sweep of 254 hosts in 8 minutes.",
+            "timestamp": "2025-04-25T15:00:00Z",
+            "source_org": "SmartFactory Inc",
+            "event_type": "Network Reconnaissance",
+            "data_source": "OT Network Monitor",
+            "ground_truth": {
+                "classification": "Network Intrusion",
+                "severity": 4,
+                "attack_techniques": ["T1046", "T1595"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-013",
+            "event_description": "Procurement officer 'r.chen' (Employee ID: EMP-2219) approved 17 purchase orders totaling $2.1M to three shell companies in the last 30 days. All three companies share the same registered agent, were incorporated within 2 weeks of each other, and list PO Box addresses. r.chen's approval authority limit is $500K per PO (all individual POs are just below this threshold at $480K-$499K). r.chen recently declined a scheduled vacation and has been accessing the procurement system outside business hours (10 PM - 2 AM) for the past two weeks.",
+            "timestamp": "2025-05-15T22:30:00Z",
+            "source_org": "IndustrialParts Corp",
+            "event_type": "Procurement Anomaly",
+            "data_source": "ERP Procurement Module + HR System",
+            "ground_truth": {
+                "classification": "Insider Threat",
+                "severity": 5,
+                "attack_techniques": ["T1078", "T1565.001"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-014",
+            "event_description": "Database administrator 'k.santos' executed a bulk export of the customer order database (180,000 records including delivery addresses, order volumes, and pricing agreements) to a personal USB drive at 11:45 PM. k.santos submitted a resignation letter earlier that day, effective in 2 weeks. The DLP system flagged the USB transfer. k.santos' access to production databases was scheduled for review next quarter. The exported data includes contracts with 3 defense sector clients classified as ITAR-controlled.",
+            "timestamp": "2025-03-10T23:45:00Z",
+            "source_org": "DefenseTech Manufacturing",
+            "event_type": "Data Loss Prevention Alert",
+            "data_source": "DLP System + HR System + Endpoint Monitor",
+            "ground_truth": {
+                "classification": "Insider Threat",
+                "severity": 5,
+                "attack_techniques": ["T1052", "T1005", "T1078"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-015",
+            "event_description": "Night shift supervisor 'a.wright' used their production floor badge to access the R&D lab at 3:15 AM. a.wright's role does not include R&D access. Security camera shows a.wright photographing whiteboard contents in the advanced materials lab (Project Phoenix - next-gen composite formula). a.wright's spouse was recently identified as an employee of a competing manufacturer. Badge access logs show 4 similar unauthorized entries over the past 2 months, all during night shifts.",
+            "timestamp": "2025-06-08T03:15:00Z",
+            "source_org": "CompositeTech Advanced Materials",
+            "event_type": "Physical Access Violation",
+            "data_source": "Badge Access System + CCTV Analytics",
+            "ground_truth": {
+                "classification": "Insider Threat",
+                "severity": 4,
+                "attack_techniques": ["T1078", "T1119"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-016",
+            "event_description": "All 12 workstations in the engineering department simultaneously displayed ransomware messages at 6:02 AM Monday. Files encrypted with .lockbit extension. Ransom note demands 15 BTC ($750,000) with 72-hour deadline. Investigation reveals the initial infection vector was a malicious macro in an Excel file ('Q2_Supplier_Quotes.xlsm') opened by an engineer on Friday afternoon. The malware spread laterally via SMB to shared drives containing CAD files, BOMs, and production schedules. Backups exist but the last verified backup is 11 days old.",
+            "timestamp": "2025-04-14T06:02:00Z",
+            "source_org": "ToolMaker Industries",
+            "event_type": "Ransomware Incident",
+            "data_source": "Endpoint Detection + File Integrity Monitor",
+            "ground_truth": {
+                "classification": "Ransomware",
+                "severity": 5,
+                "attack_techniques": ["T1486", "T1566.001", "T1021.002"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-017",
+            "event_description": "Production line PLC-07 received a firmware update command at 2:30 AM from the engineering workstation ENG-WS-04. The firmware update was not scheduled in the maintenance calendar. The update package hash does not match any known firmware version from the PLC vendor (Siemens). ENG-WS-04 has an active remote desktop session from external IP 45.33.32.156. The PLC controls the hydraulic press on Assembly Line 3, which operates at 2000 PSI.",
+            "timestamp": "2025-05-28T02:30:00Z",
+            "source_org": "HeavyMetal Fabrication",
+            "event_type": "OT Integrity Alert",
+            "data_source": "OT Security Monitor + Change Management System",
+            "ground_truth": {
+                "classification": "Ransomware",
+                "severity": 5,
+                "attack_techniques": ["T1059", "T1133", "T1495"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-018",
+            "event_description": "HR department received 45 emails in 2 hours with subject lines referencing 'Updated W-2 Forms' and 'Urgent: Payroll Verification Required'. Emails contain links to a convincing replica of the company's internal HR portal (hosted on hr-megamfg-portal.com vs actual hr.megamfg.com). Three employees clicked the link and entered credentials. The phishing domain was registered 24 hours ago. SPF and DKIM checks pass because the emails were sent through a compromised marketing automation platform.",
+            "timestamp": "2025-01-28T10:00:00Z",
+            "source_org": "MegaMfg Industries",
+            "event_type": "Phishing Campaign",
+            "data_source": "Email Gateway + Web Proxy",
+            "ground_truth": {
+                "classification": "Phishing",
+                "severity": 4,
+                "attack_techniques": ["T1566.002", "T1586.002"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-019",
+            "event_description": "An email purporting to be from the CEO was sent to the CFO requesting an urgent wire transfer of $890,000 to 'finalize the acquisition of a tooling supplier in Taiwan.' The email was sent from ceo.name@megamfg-corp.com (company domain is megamfg.com). The email references a real acquisition target that was discussed in a board meeting last week (suggesting the attacker has insider knowledge or compromised board communications). The CFO's assistant flagged it because the CEO normally communicates acquisition details through the legal department.",
+            "timestamp": "2025-02-14T16:20:00Z",
+            "source_org": "MegaMfg Industries",
+            "event_type": "Executive Impersonation",
+            "data_source": "Email Gateway + Transaction System",
+            "ground_truth": {
+                "classification": "BEC Payment Fraud",
+                "severity": 5,
+                "attack_techniques": ["T1566.002", "T1534"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-020",
+            "event_description": "Supplier PartsCo submitted invoice INV-2025-8833 for $67,200 for a legitimate shipment received and verified by the warehouse team. The invoice amount matches the purchase order PO-44521. However, the banking details on the invoice differ from PartsCo's records on file. When the AP team contacted PartsCo by phone, the supplier confirmed they did NOT send a new invoice and their email system had been compromised last week. The fraudulent invoice was sent from the supplier's actual email address.",
+            "timestamp": "2025-03-05T11:00:00Z",
+            "source_org": "QuickBuild Manufacturing",
+            "event_type": "Invoice Anomaly",
+            "data_source": "Accounts Payable System",
+            "ground_truth": {
+                "classification": "BEC Payment Fraud",
+                "severity": 4,
+                "attack_techniques": ["T1566", "T1534"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-021",
+            "event_description": "Supplier GlobalSteel notified accounts payable via email that they have undergone a banking system migration and submitted new wire transfer details along with updated invoice INV-GS-4420 for $215,000. The email came from billing@globalsteel.com (verified domain). The new bank is a legitimate major bank (JPMorgan Chase). AP verified by calling GlobalSteel's main office number, and their finance department confirmed the change. A signed bank verification letter was provided on official bank letterhead.",
+            "timestamp": "2025-04-20T09:30:00Z",
+            "source_org": "AutoCorp Manufacturing",
+            "event_type": "Banking Detail Change Request",
+            "data_source": "Accounts Payable System + Email",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-022",
+            "event_description": "Web application firewall detected a sustained traffic spike to the supplier portal: 50,000 requests per minute (normal: 500 rpm) from 2,300 unique IP addresses across 40 countries. HTTP response codes show 95% are 200 OK (not reconnaissance patterns). The traffic spike correlates with the company's annual supplier conference starting today, where a new online procurement platform was announced. Registration page received 12,000 new sign-ups in 3 hours.",
+            "timestamp": "2025-05-05T08:00:00Z",
+            "source_org": "GlobalMfg Corp",
+            "event_type": "Traffic Anomaly",
+            "data_source": "WAF + Web Server Logs",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-023",
+            "event_description": "Scheduled monthly ERP system maintenance caused 45 minutes of intermittent connectivity to the procurement module. During this window, 23 purchase orders showed 'modified' status in the audit log. Investigation reveals these modifications were automatic rollbacks performed by the ERP system's transaction recovery mechanism after database failover. All 23 POs returned to their original values after maintenance completion. Change management ticket CM-2025-0891 documents the planned maintenance.",
+            "timestamp": "2025-06-01T02:00:00Z",
+            "source_org": "PrecisionMfg Inc",
+            "event_type": "System Modification Alert",
+            "data_source": "ERP Audit Trail + Change Management System",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-024",
+            "event_description": "Network monitoring detected a 300% increase in data transfer between the production floor network (10.0.1.0/24) and the cloud backup service (AWS S3 endpoint). The transfer totals 85 GB over 4 hours. Investigation reveals this coincides with the quarterly production data archival process scheduled in the IT calendar. The S3 bucket (s3://precisionmfg-prod-archive) is the designated backup destination. All data is encrypted with the company's KMS key. Backup job ID BK-2025-Q2-001 matches the scheduled task.",
+            "timestamp": "2025-06-30T01:00:00Z",
+            "source_org": "PrecisionMfg Inc",
+            "event_type": "Data Transfer Anomaly",
+            "data_source": "NetFlow Monitor + Cloud Access Security Broker",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-025",
+            "event_description": "New supplier 'EcoPlastics Thailand' was onboarded into the vendor management system. The onboarding was initiated by Procurement Manager Sarah Kim (EMP-1087) following a 3-month vendor qualification process. The supplier passed ISO 9001 audit, financial stability check (D&B rating: 5A1), and reference checks with two existing customers. All onboarding documentation (tax certificates, insurance, banking details) was verified through the standard 4-step approval workflow. The supplier's first PO is for $45,000.",
+            "timestamp": "2025-05-12T14:00:00Z",
+            "source_org": "GreenMfg Industries",
+            "event_type": "New Vendor Onboarding",
+            "data_source": "Vendor Management System",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-026",
+            "event_description": "IT administrator 'p.nguyen' accessed the production database at 11:30 PM from the VPN. p.nguyen's access logs show they pulled 50,000 records from the order management table. HR records confirm p.nguyen is currently on the on-call rotation for database incident response. A Jira ticket (INC-4421) was filed at 11:15 PM reporting slow query performance on the order management module. p.nguyen's actions match the standard diagnostic procedure: export table, analyze indexes, apply optimization. The ticket was closed at 1:15 AM with resolution notes.",
+            "timestamp": "2025-04-08T23:30:00Z",
+            "source_org": "MegaMfg Industries",
+            "event_type": "Off-Hours Database Access",
+            "data_source": "Database Audit Log + VPN + Ticketing System",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 1,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-027",
+            "event_description": "A phishing email campaign targeted 200 employees with a fake Microsoft 365 login page. The email subject was 'Action Required: Password Expiry in 24 Hours'. Unlike typical phishing, this campaign used a legitimate compromised SharePoint site as the hosting platform, bypassing URL reputation filters. 18 employees entered credentials before the security team blocked the URL. The attackers used the harvested credentials to access the procurement system and submitted 3 fraudulent purchase orders totaling $340,000 to a recently created supplier entity.",
+            "timestamp": "2025-06-15T09:45:00Z",
+            "source_org": "MultiTech Manufacturing",
+            "event_type": "Credential Harvest + Fraud",
+            "data_source": "Email Gateway + Web Proxy + Procurement System",
+            "ground_truth": {
+                "classification": "Phishing",
+                "severity": 5,
+                "attack_techniques": ["T1566.002", "T1078", "T1565.001"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-028",
+            "event_description": "Supplier 'QuickShip Logistics' submitted an invoice INV-QS-9920 for $78,500 for freight services on Shipment #SH-5543. The shipment was received and signed for by warehouse staff. The invoice amount is 12% higher than the contracted rate. QuickShip's account manager explained the surcharge is due to emergency fuel supplements applied industry-wide last month, referenced in logistics trade publications. The company's other logistics providers also submitted surcharge notifications this month. The invoice breakdown shows standard freight ($70,000) plus fuel surcharge ($8,500).",
+            "timestamp": "2025-05-20T10:15:00Z",
+            "source_org": "AutoCorp Manufacturing",
+            "event_type": "Invoice Amount Deviation",
+            "data_source": "Accounts Payable System",
+            "ground_truth": {
+                "classification": "Benign/Normal",
+                "severity": 2,
+                "attack_techniques": [],
+                "is_attack": false
+            }
+        },
+        {
+            "id": "SC-029",
+            "event_description": "The company's public-facing supplier portal experienced a distributed denial-of-service attack. Traffic peaked at 2.1 Gbps from a botnet of approximately 15,000 compromised IoT devices. The attack lasted 4 hours and rendered the portal unavailable. During the outage, 3 suppliers attempted to submit time-sensitive bids for a $5M contract, and missed the deadline. The attack was claimed by hacktivist group 'SupplyBreakers' on social media, citing environmental concerns about the company's mining operations.",
+            "timestamp": "2025-03-22T12:00:00Z",
+            "source_org": "MineralTech Resources",
+            "event_type": "DDoS Attack",
+            "data_source": "WAF + DDoS Mitigation Service + Social Media Monitor",
+            "ground_truth": {
+                "classification": "DDoS",
+                "severity": 4,
+                "attack_techniques": ["T1498", "T1499"],
+                "is_attack": true
+            }
+        },
+        {
+            "id": "SC-030",
+            "event_description": "Simultaneous anomalies detected across three supply chain tiers. Tier-3: Supplier RawMaterials Inc reports VPN compromise from contractor credentials. Tier-2: Component manufacturer MidTech Corp detects $1.2M in fraudulent purchase orders submitted through the compromised VPN. Tier-1: OEM FinalAssembly Ltd's SCADA network shows reconnaissance scanning originating from MidTech's compromised network segment. The attacks appear coordinated — all began within a 90-minute window. Threat intelligence feeds link the source IPs to APT group 'SupplyChainViper' active in the semiconductor sector.",
+            "timestamp": "2025-06-20T14:30:00Z",
+            "source_org": "Multi-Organization (Cross Supply Chain)",
+            "event_type": "Coordinated Multi-Vector Attack",
+            "data_source": "Cross-Organization Threat Intelligence",
+            "ground_truth": {
+                "classification": "Network Intrusion",
+                "severity": 5,
+                "attack_techniques": ["T1133", "T1078", "T1046", "T1565.001"],
+                "is_attack": true
+            }
+        }
+    ]
+}

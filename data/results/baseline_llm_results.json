@@ -1,0 +1,1872 @@
+{
+  "experiment": "Week 1 - LLM-Only Baseline",
+  "model": "llama3:8b",
+  "temperature": 0.1,
+  "timestamp": "2026-03-02T08:18:39.193405",
+  "summary_metrics": {
+    "total_scenarios": 30,
+    "classification_accuracy": 0.5667,
+    "correct_classifications": 17,
+    "binary_detection": {
+      "accuracy": 0.8333,
+      "precision": 0.8214,
+      "recall": 1.0,
+      "f1_score": 0.902,
+      "true_positives": 23,
+      "true_negatives": 2,
+      "false_positives": 5,
+      "false_negatives": 0
+    },
+    "severity_analysis": {
+      "mean_absolute_error": 0.767,
+      "max_error": 4,
+      "errors": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        3,
+        3,
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        4,
+        0
+      ]
+    },
+    "technique_mapping": {
+      "avg_jaccard_overlap": 0.128,
+      "total_hallucinated_techniques": 20,
+      "scenarios_with_hallucinations": 18,
+      "hallucination_rate": 0.6
+    },
+    "false_escalation_rate": 0.7143,
+    "parse_success_rate": 0.9,
+    "avg_inference_time_seconds": 45.91,
+    "avg_confidence": 0.763,
+    "avg_output_completeness": 0.9
+  },
+  "individual_results": [
+    {
+      "scenario_id": "SC-001",
+      "inference_time_seconds": 94.191,
+      "raw_output": "{\n    \"threat_classification\": \"BEC Payment Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker used a targeted email to gain access to the victim's financial information\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Email from techparts-inc.com (not the normal domain techparts.com) requesting immediate bank account change\",\n        \"New bank account registered in Cayman Islands, different country than supplier's known location (Germany)\",\n        \"Urgency language used to create a sense of panic\"\n    ],\n    \"reasoning_chain\": [\n        \"The email contains urgency language and requests an immediate action, which is unusual for a legitimate business transaction\",\n        \"The new bank account is registered in a different country than the supplier's known location, which raises suspicions about the legitimacy of the request\",\n        \"The use of techparts-inc.com instead of the normal domain techparts.com suggests that the email may be fraudulent\"\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify the authenticity of the request with the supplier and confirm the new bank account information\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent potential financial loss due to a fraudulent payment\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive as it is based on specific indicators that are uncommon for legitimate business transactions and the use of urgency language, which is often used by attackers in BEC attacks\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "BEC Payment Fraud",
+        "severity_level": 4,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing",
+            "tactic": "Initial Access",
+            "relevance": "The attacker used a targeted email to gain access to the victim's financial information"
+          }
+        ],
+        "detected_indicators": [
+          "Email from techparts-inc.com (not the normal domain techparts.com) requesting immediate bank account change",
+          "New bank account registered in Cayman Islands, different country than supplier's known location (Germany)",
+          "Urgency language used to create a sense of panic"
+        ],
+        "reasoning_chain": "['The email contains urgency language and requests an immediate action, which is unusual for a legitimate business transaction', \"The new bank account is registered in a different country than the supplier's known location, which raises suspicions about the legitimacy of the request\", 'The use of techparts-inc.com instead of the normal domain techparts.com suggests that the email may be fraudulent']",
+        "recommended_actions": [
+          {
+            "action": "Verify the authenticity of the request with the supplier and confirm the new bank account information",
+            "priority": "Immediate",
+            "rationale": "To prevent potential financial loss due to a fraudulent payment"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive as it is based on specific indicators that are uncommon for legitimate business transactions and the use of urgency language, which is often used by attackers in BEC attacks",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "BEC Payment Fraud",
+        "ground_truth_classification": "BEC Payment Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.5,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1566.002",
+          "T1534"
+        ],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-002",
+      "inference_time_seconds": 39.251,
+      "raw_output": "{\n    \"threat_classification\": \"Invoice Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The procurement manager's recent employment and the supplier's new business registration suggest a potential phishing attack or social engineering\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"New supplier not present in approved vendor database\",\n        \"Unusual payment terms request (100% advance payment)\",\n        \"Procurement manager joined company 3 weeks ago\"\n    ],\n    \"reasoning_chain\": \"The combination of a new supplier, unusual payment terms, and the procurement manager's recent employment suggests a potential invoice fraud attempt. The lack of a legitimate business registration for the supplier further supports this classification.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify the legitimacy of MetalWorks Global Ltd\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent potential financial loss and ensure supply chain integrity\"\n        },\n        {\n            \"action\": \"Revoke approval for PO-78432\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To prevent further fraudulent activity\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive due to the unusual nature of the supplier and payment terms, as well as the procurement manager's recent employment. However, additional investigation is necessary to confirm the legitimacy of MetalWorks Global Ltd.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Invoice Fraud",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The procurement manager's recent employment and the supplier's new business registration suggest a potential phishing attack or social engineering"
+          }
+        ],
+        "detected_indicators": [
+          "New supplier not present in approved vendor database",
+          "Unusual payment terms request (100% advance payment)",
+          "Procurement manager joined company 3 weeks ago"
+        ],
+        "reasoning_chain": "The combination of a new supplier, unusual payment terms, and the procurement manager's recent employment suggests a potential invoice fraud attempt. The lack of a legitimate business registration for the supplier further supports this classification.",
+        "recommended_actions": [
+          {
+            "action": "Verify the legitimacy of MetalWorks Global Ltd",
+            "priority": "Immediate",
+            "rationale": "To prevent potential financial loss and ensure supply chain integrity"
+          },
+          {
+            "action": "Revoke approval for PO-78432",
+            "priority": "Short-term",
+            "rationale": "To prevent further fraudulent activity"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive due to the unusual nature of the supplier and payment terms, as well as the procurement manager's recent employment. However, additional investigation is necessary to confirm the legitimacy of MetalWorks Global Ltd.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Invoice Fraud",
+        "ground_truth_classification": "BEC Payment Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1078",
+          "T1566"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-003",
+      "inference_time_seconds": 51.327,
+      "raw_output": "{\n    \"threat_classification\": \"Invoice Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The supplier's verified email address was used to submit the duplicate invoices, indicating a potential phishing attack\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-03-28T02:30:00Z\",\n            \"source_organization\": \"BuildRight Industries\",\n            \"event_type\": \"Transaction Anomaly\",\n            \"data_source\": \"Accounts Payable System\"\n        },\n        {\n            \"duplicate_invoice_amount\": \"$430,000\",\n            \"invoice_numbers\": [\"INV-2025-4401\", \"INV-2025-4401a\", \"INV-2025-4401b\"]\n        }\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The submission of three duplicate invoices within 48 hours is an unusual transaction pattern\",\n            \"conclusion\": \"This suggests potential fraudulent activity\"\n        },\n        {\n            \"step\": \"The invoices were submitted from the supplier's verified email address, but during non-business hours\",\n            \"conclusion\": \"This could indicate a phishing attack or compromised account\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify invoice authenticity with SteelCo and investigate potential phishing attacks\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent further fraudulent activity and minimize financial loss\"\n        },\n        {\n            \"action\": \"Implement additional authentication measures for supplier invoices\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To reduce the risk of future fraudulent activities\"\n        }\n    ],\n    \"false_positive_assessment\": \"The unusual transaction pattern, combined with the suspicious submission time and verified email address, suggests a high likelihood of genuine fraud. However, further investigation is necessary to confirm the authenticity of the invoices.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Invoice Fraud",
+        "severity_level": 4,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The supplier's verified email address was used to submit the duplicate invoices, indicating a potential phishing attack"
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-03-28T02:30:00Z",
+            "source_organization": "BuildRight Industries",
+            "event_type": "Transaction Anomaly",
+            "data_source": "Accounts Payable System"
+          },
+          {
+            "duplicate_invoice_amount": "$430,000",
+            "invoice_numbers": [
+              "INV-2025-4401",
+              "INV-2025-4401a",
+              "INV-2025-4401b"
+            ]
+          }
+        ],
+        "reasoning_chain": "[{'step': 'The submission of three duplicate invoices within 48 hours is an unusual transaction pattern', 'conclusion': 'This suggests potential fraudulent activity'}, {'step': \"The invoices were submitted from the supplier's verified email address, but during non-business hours\", 'conclusion': 'This could indicate a phishing attack or compromised account'}]",
+        "recommended_actions": [
+          {
+            "action": "Verify invoice authenticity with SteelCo and investigate potential phishing attacks",
+            "priority": "immediate",
+            "rationale": "To prevent further fraudulent activity and minimize financial loss"
+          },
+          {
+            "action": "Implement additional authentication measures for supplier invoices",
+            "priority": "short-term",
+            "rationale": "To reduce the risk of future fraudulent activities"
+          }
+        ],
+        "false_positive_assessment": "The unusual transaction pattern, combined with the suspicious submission time and verified email address, suggests a high likelihood of genuine fraud. However, further investigation is necessary to confirm the authenticity of the invoices.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Invoice Fraud",
+        "ground_truth_classification": "Invoice Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1565.001"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-004",
+      "inference_time_seconds": 47.076,
+      "raw_output": "{\n    \"threat_classification\": \"Invoice Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1199\",\n            \"technique_name\": \"Exploitation of Trust\",\n            \"tactic\": \"Lateral Movement\",\n            \"relevance\": \"The attacker exploited the trust relationship between the integration service account and the ERP system to modify the invoice.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-05-10T16:45:00Z\",\n            \"amount_change\": 150,\n            \"API_access_token\": \"AT-8832\"\n        }\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The invoice modification was made using an API access token assigned to an integration service account.\",\n            \"conclusion\": \"This suggests that the modification was performed by a malicious actor with access to the integration service account.\"\n        },\n        {\n            \"step\": \"The last password rotation for the integration service account was 14 months ago, indicating potential weak authentication controls.\",\n            \"conclusion\": \"This increases the likelihood of unauthorized access and manipulation of the ERP system.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Immediately revoke API access token AT-8832\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized modifications to invoices\"\n        },\n        {\n            \"action\": \"Conduct a thorough investigation of the integration service account and its access controls\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify potential vulnerabilities and implement corrective measures\"\n        }\n    ],\n    \"false_positive_assessment\": \"The combination of unusual API activity, lack of recent password rotation, and significant invoice modification suggests a high likelihood of malicious activity. However, further investigation is required to confirm the presence of an attacker.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Invoice Fraud",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1199",
+            "technique_name": "Exploitation of Trust",
+            "tactic": "Lateral Movement",
+            "relevance": "The attacker exploited the trust relationship between the integration service account and the ERP system to modify the invoice."
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-05-10T16:45:00Z",
+            "amount_change": 150,
+            "API_access_token": "AT-8832"
+          }
+        ],
+        "reasoning_chain": "[{'step': 'The invoice modification was made using an API access token assigned to an integration service account.', 'conclusion': 'This suggests that the modification was performed by a malicious actor with access to the integration service account.'}, {'step': 'The last password rotation for the integration service account was 14 months ago, indicating potential weak authentication controls.', 'conclusion': 'This increases the likelihood of unauthorized access and manipulation of the ERP system.'}]",
+        "recommended_actions": [
+          {
+            "action": "Immediately revoke API access token AT-8832",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized modifications to invoices"
+          },
+          {
+            "action": "Conduct a thorough investigation of the integration service account and its access controls",
+            "priority": "Short-term",
+            "rationale": "To identify potential vulnerabilities and implement corrective measures"
+          }
+        ],
+        "false_positive_assessment": "The combination of unusual API activity, lack of recent password rotation, and significant invoice modification suggests a high likelihood of malicious activity. However, further investigation is required to confirm the presence of an attacker.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Invoice Fraud",
+        "ground_truth_classification": "Invoice Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1199"
+        ],
+        "ground_truth_techniques": [
+          "T1565.001",
+          "T1078.004"
+        ],
+        "hallucinated_techniques": [
+          "T1199"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-005",
+      "inference_time_seconds": 45.425,
+      "raw_output": "{\n    \"threat_classification\": \"Data Tampering\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1199\",\n            \"technique_name\": \"Exploitation of Trust\",\n            \"tactic\": \"Persistence\",\n            \"relevance\": \"The attacker exploited the trust in the warehouse operator role to modify the quality record\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-06-12T02:47:00Z\",\n            \"user_id\": \"'wh_operator_12'\",\n            \"role\": \"warehouse operator\",\n            \"modified_data\": \"purity value changed from 94.2% to 99.1%\"\n        }\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The modification of the quality record was performed by a user without edit permissions, indicating unauthorized access.\",\n            \"conclusion\": \"Data tampering is likely\"\n        },\n        {\n            \"step\": \"The modified data value is suspiciously high, suggesting an attempt to manipulate the quality certification record.\",\n            \"conclusion\": \"Data tampering is highly likely\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Revoke access for user 'wh_operator_12' and conduct a thorough investigation\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent further unauthorized modifications and ensure the integrity of quality records\"\n        },\n        {\n            \"action\": \"Verify the authenticity of all quality certification records\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To identify any potential tampering or manipulation\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is based on specific indicators and a clear reasoning chain, making it less likely to be a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Data Tampering",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1199",
+            "technique_name": "Exploitation of Trust",
+            "tactic": "Persistence",
+            "relevance": "The attacker exploited the trust in the warehouse operator role to modify the quality record"
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-06-12T02:47:00Z",
+            "user_id": "'wh_operator_12'",
+            "role": "warehouse operator",
+            "modified_data": "purity value changed from 94.2% to 99.1%"
+          }
+        ],
+        "reasoning_chain": "[{'step': 'The modification of the quality record was performed by a user without edit permissions, indicating unauthorized access.', 'conclusion': 'Data tampering is likely'}, {'step': 'The modified data value is suspiciously high, suggesting an attempt to manipulate the quality certification record.', 'conclusion': 'Data tampering is highly likely'}]",
+        "recommended_actions": [
+          {
+            "action": "Revoke access for user 'wh_operator_12' and conduct a thorough investigation",
+            "priority": "immediate",
+            "rationale": "To prevent further unauthorized modifications and ensure the integrity of quality records"
+          },
+          {
+            "action": "Verify the authenticity of all quality certification records",
+            "priority": "short-term",
+            "rationale": "To identify any potential tampering or manipulation"
+          }
+        ],
+        "false_positive_assessment": "This assessment is based on specific indicators and a clear reasoning chain, making it less likely to be a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Data Tampering",
+        "ground_truth_classification": "Data Tampering",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1199"
+        ],
+        "ground_truth_techniques": [
+          "T1565.001"
+        ],
+        "hallucinated_techniques": [
+          "T1199"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-006",
+      "inference_time_seconds": 49.936,
+      "raw_output": "{\n    \"threat_classification\": \"Data Tampering\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1003.001\",\n            \"technique_name\": \"Command and Scripting\",\n            \"tactic\": \"Persistence\",\n            \"relevance\": \"The attacker modified database records using admin credentials, indicating a level of persistence\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"847 entries modified in 15-minute window\",\n        \"Quantity changes for raw materials reduced by 10-15%\",\n        \"IP address 10.42.8.199 resolves to finance department workstation\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"indicator\": \"847 entries modified in 15-minute window\",\n            \"logic\": \"This is an unusual volume of modifications, exceeding normal daily adjustments by a factor of 3-4\"\n        },\n        {\n            \"indicator\": \"Quantity changes for raw materials reduced by 10-15%\",\n            \"logic\": \"This pattern suggests intentional manipulation rather than genuine inventory adjustments\"\n        },\n        {\n            \"indicator\": \"IP address 10.42.8.199 resolves to finance department workstation\",\n            \"logic\": \"The use of database admin credentials from a finance department workstation raises suspicions about insider involvement\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Conduct immediate review of inventory records and financial transactions\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To identify potential losses or discrepancies caused by the tampering\"\n        },\n        {\n            \"action\": \"Implement additional access controls for finance department workstations\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To prevent further unauthorized modifications and ensure accountability\"\n        }\n    ],\n    \"false_positive_assessment\": \"The unusual volume of modifications, combined with the suspicious IP address and credential usage, suggests a high likelihood of malicious activity. However, it is possible that this could be a false positive if there was an unexpected inventory adjustment or system glitch.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Data Tampering",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1003.001",
+            "technique_name": "Command and Scripting",
+            "tactic": "Persistence",
+            "relevance": "The attacker modified database records using admin credentials, indicating a level of persistence"
+          }
+        ],
+        "detected_indicators": [
+          "847 entries modified in 15-minute window",
+          "Quantity changes for raw materials reduced by 10-15%",
+          "IP address 10.42.8.199 resolves to finance department workstation"
+        ],
+        "reasoning_chain": "[{'indicator': '847 entries modified in 15-minute window', 'logic': 'This is an unusual volume of modifications, exceeding normal daily adjustments by a factor of 3-4'}, {'indicator': 'Quantity changes for raw materials reduced by 10-15%', 'logic': 'This pattern suggests intentional manipulation rather than genuine inventory adjustments'}, {'indicator': 'IP address 10.42.8.199 resolves to finance department workstation', 'logic': 'The use of database admin credentials from a finance department workstation raises suspicions about insider involvement'}]",
+        "recommended_actions": [
+          {
+            "action": "Conduct immediate review of inventory records and financial transactions",
+            "priority": "Immediate",
+            "rationale": "To identify potential losses or discrepancies caused by the tampering"
+          },
+          {
+            "action": "Implement additional access controls for finance department workstations",
+            "priority": "Short-term",
+            "rationale": "To prevent further unauthorized modifications and ensure accountability"
+          }
+        ],
+        "false_positive_assessment": "The unusual volume of modifications, combined with the suspicious IP address and credential usage, suggests a high likelihood of malicious activity. However, it is possible that this could be a false positive if there was an unexpected inventory adjustment or system glitch.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Data Tampering",
+        "ground_truth_classification": "Data Tampering",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1003.001"
+        ],
+        "ground_truth_techniques": [
+          "T1565.001",
+          "T1078"
+        ],
+        "hallucinated_techniques": [
+          "T1003.001"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-007",
+      "inference_time_seconds": 48.491,
+      "raw_output": "{\n    \"threat_classification\": \"Data Tampering\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Modify Existing Data\",\n            \"tactic\": \"Persistence\",\n            \"relevance\": \"The attacker modified the shipping manifest to alter the declared weight and HS code, demonstrating persistence in maintaining access to the system.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-05-22T11:30:00Z\",\n            \"source_organization\": \"ChipFab Semiconductor\",\n            \"event_type\": \"Document Modification Alert\"\n        },\n        \"IP 203.45.67.89 (logistics partner's VPN)\",\n        \"Employee credentials used for modification (currently on medical leave)\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The shipping manifest was modified after customs clearance, indicating unauthorized access to the system.\",\n            \"conclusion\": \"Data tampering is likely occurring.\"\n        },\n        {\n            \"step\": \"The modification originated from the logistics partner's VPN using an employee's credentials, suggesting insider involvement or compromised credentials.\",\n            \"conclusion\": \"Insider threat or credential compromise is possible.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Revoke access to sensitive systems for the employee on medical leave\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized modifications and maintain system integrity.\"\n        },\n        {\n            \"action\": \"Conduct a thorough investigation into the compromised credentials and insider involvement\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify the root cause of the incident and prevent future occurrences.\"\n        }\n    ],\n    \"false_positive_assessment\": \"The combination of unusual IP address, employee credentials used for modification, and timing after customs clearance suggests a genuine security event rather than a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Data Tampering",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Modify Existing Data",
+            "tactic": "Persistence",
+            "relevance": "The attacker modified the shipping manifest to alter the declared weight and HS code, demonstrating persistence in maintaining access to the system."
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-05-22T11:30:00Z",
+            "source_organization": "ChipFab Semiconductor",
+            "event_type": "Document Modification Alert"
+          },
+          "IP 203.45.67.89 (logistics partner's VPN)",
+          "Employee credentials used for modification (currently on medical leave)"
+        ],
+        "reasoning_chain": "[{'step': 'The shipping manifest was modified after customs clearance, indicating unauthorized access to the system.', 'conclusion': 'Data tampering is likely occurring.'}, {'step': \"The modification originated from the logistics partner's VPN using an employee's credentials, suggesting insider involvement or compromised credentials.\", 'conclusion': 'Insider threat or credential compromise is possible.'}]",
+        "recommended_actions": [
+          {
+            "action": "Revoke access to sensitive systems for the employee on medical leave",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized modifications and maintain system integrity."
+          },
+          {
+            "action": "Conduct a thorough investigation into the compromised credentials and insider involvement",
+            "priority": "Short-term",
+            "rationale": "To identify the root cause of the incident and prevent future occurrences."
+          }
+        ],
+        "false_positive_assessment": "The combination of unusual IP address, employee credentials used for modification, and timing after customs clearance suggests a genuine security event rather than a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Data Tampering",
+        "ground_truth_classification": "Data Tampering",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1565.001",
+          "T1078"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-008",
+      "inference_time_seconds": 61.256,
+      "raw_output": "{\n    \"threat_classification\": \"Network Intrusion\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1204.001\",\n            \"technique_name\": \"File and Directory Discovery\",\n            \"tactic\": \"Discovery\",\n            \"relevance\": \"The attacker is attempting to gather information about the SCADA controller's file system\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"14,000 connection attempts to the SCADA controller (IP 10.0.1.50) on port 502 (Modbus/TCP)\",\n        \"Internal IP 10.0.5.211 belongs to a contractor's laptop connected to the guest WiFi network\",\n        \"No building entry recorded for the contractor's physical badge\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The sudden and unusual volume of connection attempts to the SCADA controller suggests an unauthorized access attempt.\",\n            \"logic\": \"Normal Modbus traffic from authorized HMI stations averages 200 connections per hour, but 14,000 attempts in 30 minutes is significantly higher.\"\n        },\n        {\n            \"step\": \"The source IP belongs to a contractor's laptop connected to the guest WiFi network, which raises suspicions about the legitimacy of the connection.\",\n            \"logic\": \"Guest WiFi networks are typically used for temporary or external access, and contractors may not have authorized access to the SCADA controller.\"\n        },\n        {\n            \"step\": \"The contractor's VPN session started 4 hours ago but their physical badge shows no building entry today, indicating potential deception or misrepresentation.\",\n            \"logic\": \"This discrepancy suggests that the contractor may be attempting to mask their true identity or location.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Block all incoming connections to the SCADA controller from the guest WiFi network\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized access and protect the integrity of the production floor\"\n        },\n        {\n            \"action\": \"Conduct a thorough investigation into the contractor's activities and verify their identity and credentials\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To determine if the contractor is involved in malicious activity or if there was an error in their badge access system\"\n        }\n    ],\n    \"false_positive_assessment\": \"The unusual volume of connection attempts, combined with the suspicious IP address and physical badge discrepancies, make it unlikely that this event is a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Network Intrusion",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1204.001",
+            "technique_name": "File and Directory Discovery",
+            "tactic": "Discovery",
+            "relevance": "The attacker is attempting to gather information about the SCADA controller's file system"
+          }
+        ],
+        "detected_indicators": [
+          "14,000 connection attempts to the SCADA controller (IP 10.0.1.50) on port 502 (Modbus/TCP)",
+          "Internal IP 10.0.5.211 belongs to a contractor's laptop connected to the guest WiFi network",
+          "No building entry recorded for the contractor's physical badge"
+        ],
+        "reasoning_chain": "[{'step': 'The sudden and unusual volume of connection attempts to the SCADA controller suggests an unauthorized access attempt.', 'logic': 'Normal Modbus traffic from authorized HMI stations averages 200 connections per hour, but 14,000 attempts in 30 minutes is significantly higher.'}, {'step': \"The source IP belongs to a contractor's laptop connected to the guest WiFi network, which raises suspicions about the legitimacy of the connection.\", 'logic': 'Guest WiFi networks are typically used for temporary or external access, and contractors may not have authorized access to the SCADA controller.'}, {'step': \"The contractor's VPN session started 4 hours ago but their physical badge shows no building entry today, indicating potential deception or misrepresentation.\", 'logic': 'This discrepancy suggests that the contractor may be attempting to mask their true identity or location.'}]",
+        "recommended_actions": [
+          {
+            "action": "Block all incoming connections to the SCADA controller from the guest WiFi network",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized access and protect the integrity of the production floor"
+          },
+          {
+            "action": "Conduct a thorough investigation into the contractor's activities and verify their identity and credentials",
+            "priority": "Short-term",
+            "rationale": "To determine if the contractor is involved in malicious activity or if there was an error in their badge access system"
+          }
+        ],
+        "false_positive_assessment": "The unusual volume of connection attempts, combined with the suspicious IP address and physical badge discrepancies, make it unlikely that this event is a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Network Intrusion",
+        "ground_truth_classification": "Network Intrusion",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1204.001"
+        ],
+        "ground_truth_techniques": [
+          "T1133",
+          "T1071",
+          "T1046"
+        ],
+        "hallucinated_techniques": [
+          "T1204.001"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-009",
+      "inference_time_seconds": 41.537,
+      "raw_output": "{\n    \"threat_classification\": \"Data Tampering\",\n    \"severity_level\": 4,\n    \"confidence\": 0.85,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Phishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker likely used phishing to gain access to the production server\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Outbound connections from PROD-DB-01 to Tor exit node 185.220.101.34 on port 443\",\n        \"Data transfer: 2.3 GB uploaded over 6 hours\"\n    ],\n    \"reasoning_chain\": \"The sustained outbound connection to a known Tor exit node, combined with the large data transfer, suggests an unauthorized data exfiltration attempt. The timing of the event, shortly after a software update was applied, raises suspicions that the attacker may have exploited a vulnerability or used social engineering to gain access.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Isolate PROD-DB-01 and conduct a thorough investigation\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further data exfiltration and contain the attack\"\n        },\n        {\n            \"action\": \"Revert software update and reapply security patches\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To address any potential vulnerabilities exploited by the attacker\"\n        }\n    ],\n    \"false_positive_assessment\": \"This event is unlikely to be a false positive due to the unusual nature of the outbound connection and data transfer, as well as the lack of scheduled backup or sync jobs targeting the external IP.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Data Tampering",
+        "severity_level": 4,
+        "confidence": 0.85,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Phishing",
+            "tactic": "Initial Access",
+            "relevance": "The attacker likely used phishing to gain access to the production server"
+          }
+        ],
+        "detected_indicators": [
+          "Outbound connections from PROD-DB-01 to Tor exit node 185.220.101.34 on port 443",
+          "Data transfer: 2.3 GB uploaded over 6 hours"
+        ],
+        "reasoning_chain": "The sustained outbound connection to a known Tor exit node, combined with the large data transfer, suggests an unauthorized data exfiltration attempt. The timing of the event, shortly after a software update was applied, raises suspicions that the attacker may have exploited a vulnerability or used social engineering to gain access.",
+        "recommended_actions": [
+          {
+            "action": "Isolate PROD-DB-01 and conduct a thorough investigation",
+            "priority": "Immediate",
+            "rationale": "To prevent further data exfiltration and contain the attack"
+          },
+          {
+            "action": "Revert software update and reapply security patches",
+            "priority": "Short-term",
+            "rationale": "To address any potential vulnerabilities exploited by the attacker"
+          }
+        ],
+        "false_positive_assessment": "This event is unlikely to be a false positive due to the unusual nature of the outbound connection and data transfer, as well as the lack of scheduled backup or sync jobs targeting the external IP.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Data Tampering",
+        "ground_truth_classification": "Network Intrusion",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1041",
+          "T1071.001",
+          "T1048"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.85
+      }
+    },
+    {
+      "scenario_id": "SC-010",
+      "inference_time_seconds": 45.573,
+      "raw_output": "{\n    \"threat_classification\": \"Network Intrusion\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1190\",\n            \"technique_name\": \"Exploitation of Authentication Mechanism\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker exploited the SSH login mechanism to gain access\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"342 failed SSH login attempts in 1 hour from external IP 91.134.22.176\",\n        \"Successful login with username 'svc_backup' at attempt 343\",\n        \"Rotating list of usernames including common and privileged accounts\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"Multiple failed SSH login attempts in a short period indicate an automated attack or reconnaissance activity.\",\n            \"conclusion\": \"This suggests an attempted network intrusion.\"\n        },\n        {\n            \"step\": \"The successful login with the svc_backup account, which was previously unused and not disabled, indicates exploitation of the authentication mechanism.\",\n            \"conclusion\": \"This further supports a network intrusion classification.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Immediately disable the svc_backup account\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized access\"\n        },\n        {\n            \"action\": \"Implement rate limiting and IP blocking for SSH login attempts\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To prevent similar attacks in the future\"\n        }\n    ],\n    \"false_positive_assessment\": \"The combination of failed login attempts, successful login with an unused account, and rotating list of usernames suggests a genuine network intrusion. However, it is possible that this could be a false positive if the svc_backup account was intentionally created for backup purposes.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Network Intrusion",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1190",
+            "technique_name": "Exploitation of Authentication Mechanism",
+            "tactic": "Initial Access",
+            "relevance": "The attacker exploited the SSH login mechanism to gain access"
+          }
+        ],
+        "detected_indicators": [
+          "342 failed SSH login attempts in 1 hour from external IP 91.134.22.176",
+          "Successful login with username 'svc_backup' at attempt 343",
+          "Rotating list of usernames including common and privileged accounts"
+        ],
+        "reasoning_chain": "[{'step': 'Multiple failed SSH login attempts in a short period indicate an automated attack or reconnaissance activity.', 'conclusion': 'This suggests an attempted network intrusion.'}, {'step': 'The successful login with the svc_backup account, which was previously unused and not disabled, indicates exploitation of the authentication mechanism.', 'conclusion': 'This further supports a network intrusion classification.'}]",
+        "recommended_actions": [
+          {
+            "action": "Immediately disable the svc_backup account",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized access"
+          },
+          {
+            "action": "Implement rate limiting and IP blocking for SSH login attempts",
+            "priority": "Short-term",
+            "rationale": "To prevent similar attacks in the future"
+          }
+        ],
+        "false_positive_assessment": "The combination of failed login attempts, successful login with an unused account, and rotating list of usernames suggests a genuine network intrusion. However, it is possible that this could be a false positive if the svc_backup account was intentionally created for backup purposes.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Network Intrusion",
+        "ground_truth_classification": "Brute Force",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1190"
+        ],
+        "ground_truth_techniques": [
+          "T1110.001",
+          "T1078.001"
+        ],
+        "hallucinated_techniques": [
+          "T1190"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-011",
+      "inference_time_seconds": 38.06,
+      "raw_output": "{\n    \"threat_classification\": \"Insider Threat\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker used compromised credentials to gain initial access to the VPN\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"VPN connection established from IP 103.28.44.67 (Vietnam)\",\n        \"IT administrator 'j.miller' badge records show he is currently in the office (Chicago, USA) but actual workstation (10.0.3.22) was active with a different session simultaneously\"\n    ],\n    \"reasoning_chain\": [\n        \"The VPN connection was established from an IP address in Vietnam, which is not a typical location for j.miller's workstation\",\n        \"j.miller's badge records show he is currently in the office, but his actual workstation was active with a different session simultaneously, indicating potential credential compromise\"\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Immediate revocation of j.miller's VPN credentials and IT administrator privileges\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent further unauthorized access to sensitive systems and data\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive due to the combination of unusual IP address, conflicting badge records, and simultaneous workstation activity\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Insider Threat",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The attacker used compromised credentials to gain initial access to the VPN"
+          }
+        ],
+        "detected_indicators": [
+          "VPN connection established from IP 103.28.44.67 (Vietnam)",
+          "IT administrator 'j.miller' badge records show he is currently in the office (Chicago, USA) but actual workstation (10.0.3.22) was active with a different session simultaneously"
+        ],
+        "reasoning_chain": "[\"The VPN connection was established from an IP address in Vietnam, which is not a typical location for j.miller's workstation\", \"j.miller's badge records show he is currently in the office, but his actual workstation was active with a different session simultaneously, indicating potential credential compromise\"]",
+        "recommended_actions": [
+          {
+            "action": "Immediate revocation of j.miller's VPN credentials and IT administrator privileges",
+            "priority": "immediate",
+            "rationale": "To prevent further unauthorized access to sensitive systems and data"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive due to the combination of unusual IP address, conflicting badge records, and simultaneous workstation activity",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Insider Threat",
+        "ground_truth_classification": "Network Intrusion",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1133",
+          "T1078",
+          "T1005"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-012",
+      "inference_time_seconds": 46.114,
+      "raw_output": "{\n    \"threat_classification\": \"Network Intrusion\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1059.007\",\n            \"technique_name\": \"Port Scanning\",\n            \"tactic\": \"Discovery\",\n            \"relevance\": \"The attacker is attempting to gather information about the OT network's open ports and services\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Port scan detected across the entire OT network segment (10.0.1.0/24) targeting specific industrial control system (ICS) protocols\",\n        \"Recently provisioned IoT sensor (10.0.1.230) deployed on the production floor for temperature monitoring\"\n    ],\n    \"reasoning_chain\": [\n        \"The port scan is a common tactic used by attackers to gather information about a network and identify potential entry points.\",\n        \"The fact that the scan targeted specific ICS protocols suggests an attacker may be attempting to exploit vulnerabilities in these systems.\",\n        \"The recently provisioned IoT sensor could be a compromised device or a new attack vector.\"\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Isolate and quarantine the recently provisioned IoT sensor\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further exploitation of the sensor as an attack vector\"\n        },\n        {\n            \"action\": \"Conduct a thorough vulnerability assessment of the OT network's ICS protocols\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify and remediate any potential vulnerabilities that could be exploited by the attacker\"\n        }\n    ],\n    \"false_positive_assessment\": \"The port scan is a common tactic used in reconnaissance, but the targeting of specific ICS protocols and the recently provisioned IoT sensor suggest a more targeted attack. Further investigation is required to confirm the nature of the threat.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Network Intrusion",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1059.007",
+            "technique_name": "Port Scanning",
+            "tactic": "Discovery",
+            "relevance": "The attacker is attempting to gather information about the OT network's open ports and services"
+          }
+        ],
+        "detected_indicators": [
+          "Port scan detected across the entire OT network segment (10.0.1.0/24) targeting specific industrial control system (ICS) protocols",
+          "Recently provisioned IoT sensor (10.0.1.230) deployed on the production floor for temperature monitoring"
+        ],
+        "reasoning_chain": "['The port scan is a common tactic used by attackers to gather information about a network and identify potential entry points.', 'The fact that the scan targeted specific ICS protocols suggests an attacker may be attempting to exploit vulnerabilities in these systems.', 'The recently provisioned IoT sensor could be a compromised device or a new attack vector.']",
+        "recommended_actions": [
+          {
+            "action": "Isolate and quarantine the recently provisioned IoT sensor",
+            "priority": "Immediate",
+            "rationale": "To prevent further exploitation of the sensor as an attack vector"
+          },
+          {
+            "action": "Conduct a thorough vulnerability assessment of the OT network's ICS protocols",
+            "priority": "Short-term",
+            "rationale": "To identify and remediate any potential vulnerabilities that could be exploited by the attacker"
+          }
+        ],
+        "false_positive_assessment": "The port scan is a common tactic used in reconnaissance, but the targeting of specific ICS protocols and the recently provisioned IoT sensor suggest a more targeted attack. Further investigation is required to confirm the nature of the threat.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Network Intrusion",
+        "ground_truth_classification": "Network Intrusion",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1059.007"
+        ],
+        "ground_truth_techniques": [
+          "T1046",
+          "T1595"
+        ],
+        "hallucinated_techniques": [
+          "T1059.007"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-013",
+      "inference_time_seconds": 57.252,
+      "raw_output": "{\n    \"threat_classification\": \"Insider Threat\",\n    \"severity_level\": 5,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The procurement officer's unusual behavior and approval patterns suggest an insider threat attempting to bypass security controls.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Procurement officer 'r.chen' approved 17 purchase orders totaling $2.1M in the last 30 days\",\n        \"All three companies share the same registered agent, were incorporated within 2 weeks of each other, and list PO Box addresses\",\n        \"r.chen's approval authority limit is $500K per PO (all individual POs are just below this threshold at $480K-$499K)\",\n        \"r.chen recently declined a scheduled vacation and has been accessing the procurement system outside business hours (10 PM - 2 AM) for the past two weeks\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"Unusual approval patterns and high-value transactions suggest potential fraud or insider threat\",\n            \"logic\": \"The procurement officer's behavior deviates from normal patterns, indicating a possible attempt to bypass security controls\"\n        },\n        {\n            \"step\": \"Shell companies with suspicious characteristics further support an insider threat hypothesis\",\n            \"logic\": \"The shared registered agent and PO Box addresses suggest a coordinated effort, likely orchestrated by the procurement officer themselves\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Immediate suspension of r.chen's access to procurement system\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized transactions and potential financial losses\"\n        },\n        {\n            \"action\": \"Conduct thorough investigation into r.chen's activities and motivations\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To determine the extent of the insider threat and identify any accomplices or compromised systems\"\n        }\n    ],\n    \"false_positive_assessment\": \"The unusual behavior and approval patterns, combined with the suspicious characteristics of the shell companies, make it unlikely that this is a false positive. However, further investigation is necessary to confirm the nature of the threat.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Insider Threat",
+        "severity_level": 5,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The procurement officer's unusual behavior and approval patterns suggest an insider threat attempting to bypass security controls."
+          }
+        ],
+        "detected_indicators": [
+          "Procurement officer 'r.chen' approved 17 purchase orders totaling $2.1M in the last 30 days",
+          "All three companies share the same registered agent, were incorporated within 2 weeks of each other, and list PO Box addresses",
+          "r.chen's approval authority limit is $500K per PO (all individual POs are just below this threshold at $480K-$499K)",
+          "r.chen recently declined a scheduled vacation and has been accessing the procurement system outside business hours (10 PM - 2 AM) for the past two weeks"
+        ],
+        "reasoning_chain": "[{'step': 'Unusual approval patterns and high-value transactions suggest potential fraud or insider threat', 'logic': \"The procurement officer's behavior deviates from normal patterns, indicating a possible attempt to bypass security controls\"}, {'step': 'Shell companies with suspicious characteristics further support an insider threat hypothesis', 'logic': 'The shared registered agent and PO Box addresses suggest a coordinated effort, likely orchestrated by the procurement officer themselves'}]",
+        "recommended_actions": [
+          {
+            "action": "Immediate suspension of r.chen's access to procurement system",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized transactions and potential financial losses"
+          },
+          {
+            "action": "Conduct thorough investigation into r.chen's activities and motivations",
+            "priority": "Short-term",
+            "rationale": "To determine the extent of the insider threat and identify any accomplices or compromised systems"
+          }
+        ],
+        "false_positive_assessment": "The unusual behavior and approval patterns, combined with the suspicious characteristics of the shell companies, make it unlikely that this is a false positive. However, further investigation is necessary to confirm the nature of the threat.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Insider Threat",
+        "ground_truth_classification": "Insider Threat",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 5,
+        "severity_ground_truth": 5,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1078",
+          "T1565.001"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-014",
+      "inference_time_seconds": 40.208,
+      "raw_output": "{\n    \"threat_classification\": \"Insider Threat\",\n    \"severity_level\": 5,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Phishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker used social engineering to gain access to the system\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"k.santos' resignation letter submitted earlier that day\",\n        \"Bulk export of customer order database to a personal USB drive at 11:45 PM\",\n        \"DLP system flagged the USB transfer\"\n    ],\n    \"reasoning_chain\": \"The combination of k.santos' sudden resignation and the bulk export of sensitive data, including ITAR-controlled contracts, suggests an insider threat. The DLP system's flagging of the USB transfer further supports this conclusion.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Immediate revocation of k.santos' access to production databases\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent potential data exfiltration or tampering\"\n        },\n        {\n            \"action\": \"Conduct thorough investigation into k.santos' activities and motivations\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To determine the extent of the insider threat and take appropriate measures to mitigate it\"\n        }\n    ],\n    \"false_positive_assessment\": \"The combination of these indicators makes a false positive unlikely, as they collectively suggest an intentional action by k.santos rather than a legitimate business process or technical error.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Insider Threat",
+        "severity_level": 5,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Phishing",
+            "tactic": "Initial Access",
+            "relevance": "The attacker used social engineering to gain access to the system"
+          }
+        ],
+        "detected_indicators": [
+          "k.santos' resignation letter submitted earlier that day",
+          "Bulk export of customer order database to a personal USB drive at 11:45 PM",
+          "DLP system flagged the USB transfer"
+        ],
+        "reasoning_chain": "The combination of k.santos' sudden resignation and the bulk export of sensitive data, including ITAR-controlled contracts, suggests an insider threat. The DLP system's flagging of the USB transfer further supports this conclusion.",
+        "recommended_actions": [
+          {
+            "action": "Immediate revocation of k.santos' access to production databases",
+            "priority": "immediate",
+            "rationale": "To prevent potential data exfiltration or tampering"
+          },
+          {
+            "action": "Conduct thorough investigation into k.santos' activities and motivations",
+            "priority": "short-term",
+            "rationale": "To determine the extent of the insider threat and take appropriate measures to mitigate it"
+          }
+        ],
+        "false_positive_assessment": "The combination of these indicators makes a false positive unlikely, as they collectively suggest an intentional action by k.santos rather than a legitimate business process or technical error.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Insider Threat",
+        "ground_truth_classification": "Insider Threat",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 5,
+        "severity_ground_truth": 5,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1052",
+          "T1005",
+          "T1078"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-015",
+      "inference_time_seconds": 45.481,
+      "raw_output": "{\n    \"threat_classification\": \"Insider Threat\",\n    \"severity_level\": 4,\n    \"confidence\": 0.85,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Phishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The unauthorized access to the R&D lab and photographing of sensitive information suggests an insider threat, potentially using phishing or other social engineering tactics to gain access.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Unusual badge access during night shifts (4 instances in 2 months)\",\n        \"Lack of legitimate reason for a.wright's R&D lab access\",\n        \"Photographing sensitive information on the whiteboard\"\n    ],\n    \"reasoning_chain\": [\n        \"The unusual badge access and lack of legitimate reason for access suggest an insider threat.\",\n        \"The photographing of sensitive information, specifically Project Phoenix data, further supports this classification.\",\n        \"The fact that a.wright's spouse works for a competing manufacturer raises suspicions about potential intellectual property theft.\"\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Conduct thorough investigation into a.wright's activities and motivations\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To determine the extent of the insider threat and prevent further unauthorized access or data exfiltration\"\n        },\n        {\n            \"action\": \"Review and update access controls for R&D lab and sensitive areas\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To prevent similar incidents and ensure the security of sensitive information\"\n        }\n    ],\n    \"false_positive_assessment\": \"The combination of unusual badge access, lack of legitimate reason, and photographing of sensitive information makes it unlikely that this is a false positive. However, further investigation is necessary to confirm the extent of the insider threat.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Insider Threat",
+        "severity_level": 4,
+        "confidence": 0.85,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Phishing",
+            "tactic": "Initial Access",
+            "relevance": "The unauthorized access to the R&D lab and photographing of sensitive information suggests an insider threat, potentially using phishing or other social engineering tactics to gain access."
+          }
+        ],
+        "detected_indicators": [
+          "Unusual badge access during night shifts (4 instances in 2 months)",
+          "Lack of legitimate reason for a.wright's R&D lab access",
+          "Photographing sensitive information on the whiteboard"
+        ],
+        "reasoning_chain": "['The unusual badge access and lack of legitimate reason for access suggest an insider threat.', 'The photographing of sensitive information, specifically Project Phoenix data, further supports this classification.', \"The fact that a.wright's spouse works for a competing manufacturer raises suspicions about potential intellectual property theft.\"]",
+        "recommended_actions": [
+          {
+            "action": "Conduct thorough investigation into a.wright's activities and motivations",
+            "priority": "Immediate",
+            "rationale": "To determine the extent of the insider threat and prevent further unauthorized access or data exfiltration"
+          },
+          {
+            "action": "Review and update access controls for R&D lab and sensitive areas",
+            "priority": "Short-term",
+            "rationale": "To prevent similar incidents and ensure the security of sensitive information"
+          }
+        ],
+        "false_positive_assessment": "The combination of unusual badge access, lack of legitimate reason, and photographing of sensitive information makes it unlikely that this is a false positive. However, further investigation is necessary to confirm the extent of the insider threat.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Insider Threat",
+        "ground_truth_classification": "Insider Threat",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1078",
+          "T1119"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.85
+      }
+    },
+    {
+      "scenario_id": "SC-016",
+      "inference_time_seconds": 45.982,
+      "raw_output": "{\n    \"threat_classification\": \"Ransomware\",\n    \"severity_level\": 5,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1190\",\n            \"technique_name\": \"Exploit Public-Facing Application\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker exploited a vulnerability in the Excel file to deliver the ransomware\"\n        },\n        {\n            \"technique_id\": \"T1027\",\n            \"technique_name\": \"Lateral Movement via SMB\",\n            \"tactic\": \"Persistence\",\n            \"relevance\": \"The malware spread laterally using SMB to shared drives\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Timestamp: 2025-04-14T06:02:00Z\",\n        \".lockbit extension on encrypted files\",\n        \"Ransom note demands 15 BTC ($750,000) with 72-hour deadline\"\n    ],\n    \"reasoning_chain\": \"The simultaneous display of ransomware messages across all workstations in the engineering department suggests a widespread infection. The presence of a malicious macro in an Excel file and lateral movement via SMB indicates a sophisticated attack. The lack of recent backups and the age of the last verified backup further increases the severity.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Restore from backups or perform a full system restore\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To minimize data loss\"\n        },\n        {\n            \"action\": \"Implement additional security controls to prevent future lateral movement\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To prevent further spread of malware\"\n        }\n    ],\n    \"false_positive_assessment\": \"The simultaneous display of ransomware messages across all workstations and the presence of a malicious macro in an Excel file make it unlikely that this is a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Ransomware",
+        "severity_level": 5,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1190",
+            "technique_name": "Exploit Public-Facing Application",
+            "tactic": "Initial Access",
+            "relevance": "The attacker exploited a vulnerability in the Excel file to deliver the ransomware"
+          },
+          {
+            "technique_id": "T1027",
+            "technique_name": "Lateral Movement via SMB",
+            "tactic": "Persistence",
+            "relevance": "The malware spread laterally using SMB to shared drives"
+          }
+        ],
+        "detected_indicators": [
+          "Timestamp: 2025-04-14T06:02:00Z",
+          ".lockbit extension on encrypted files",
+          "Ransom note demands 15 BTC ($750,000) with 72-hour deadline"
+        ],
+        "reasoning_chain": "The simultaneous display of ransomware messages across all workstations in the engineering department suggests a widespread infection. The presence of a malicious macro in an Excel file and lateral movement via SMB indicates a sophisticated attack. The lack of recent backups and the age of the last verified backup further increases the severity.",
+        "recommended_actions": [
+          {
+            "action": "Restore from backups or perform a full system restore",
+            "priority": "Immediate",
+            "rationale": "To minimize data loss"
+          },
+          {
+            "action": "Implement additional security controls to prevent future lateral movement",
+            "priority": "Short-term",
+            "rationale": "To prevent further spread of malware"
+          }
+        ],
+        "false_positive_assessment": "The simultaneous display of ransomware messages across all workstations and the presence of a malicious macro in an Excel file make it unlikely that this is a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Ransomware",
+        "ground_truth_classification": "Ransomware",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 5,
+        "severity_ground_truth": 5,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1190",
+          "T1027"
+        ],
+        "ground_truth_techniques": [
+          "T1486",
+          "T1566.001",
+          "T1021.002"
+        ],
+        "hallucinated_techniques": [
+          "T1190",
+          "T1027"
+        ],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-017",
+      "inference_time_seconds": 35.653,
+      "raw_output": "{\n    \"threat_classification\": \"Network Intrusion\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1210\",\n            \"technique_name\": \"Exploitation of Remote Services\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker exploited the remote desktop session on ENG-WS-04 to gain access to the PLC\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Firmware update command from unknown source at 2:30 AM\",\n        \"Remote desktop session from external IP 45.33.32.156\"\n    ],\n    \"reasoning_chain\": \"The unexpected firmware update and remote desktop session from an unknown IP address suggest unauthorized access to the PLC, which could compromise the hydraulic press operation.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Isolate ENG-WS-04 and restrict remote access\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized access\"\n        },\n        {\n            \"action\": \"Verify firmware update authenticity with Siemens\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To ensure the PLC is running legitimate software\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment assumes that the remote desktop session was not a routine maintenance activity. If further investigation confirms that this was a legitimate update, then this would be considered a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Network Intrusion",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1210",
+            "technique_name": "Exploitation of Remote Services",
+            "tactic": "Initial Access",
+            "relevance": "The attacker exploited the remote desktop session on ENG-WS-04 to gain access to the PLC"
+          }
+        ],
+        "detected_indicators": [
+          "Firmware update command from unknown source at 2:30 AM",
+          "Remote desktop session from external IP 45.33.32.156"
+        ],
+        "reasoning_chain": "The unexpected firmware update and remote desktop session from an unknown IP address suggest unauthorized access to the PLC, which could compromise the hydraulic press operation.",
+        "recommended_actions": [
+          {
+            "action": "Isolate ENG-WS-04 and restrict remote access",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized access"
+          },
+          {
+            "action": "Verify firmware update authenticity with Siemens",
+            "priority": "Short-term",
+            "rationale": "To ensure the PLC is running legitimate software"
+          }
+        ],
+        "false_positive_assessment": "This assessment assumes that the remote desktop session was not a routine maintenance activity. If further investigation confirms that this was a legitimate update, then this would be considered a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Network Intrusion",
+        "ground_truth_classification": "Ransomware",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1210"
+        ],
+        "ground_truth_techniques": [
+          "T1059",
+          "T1133",
+          "T1495"
+        ],
+        "hallucinated_techniques": [
+          "T1210"
+        ],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-018",
+      "inference_time_seconds": 48.566,
+      "raw_output": "{\n    \"threat_classification\": \"Phishing\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attackers used a convincing replica of the company's internal HR portal to trick employees into entering their credentials.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"45 emails received in 2 hours with subject lines referencing 'Updated W-2 Forms' and 'Urgent: Payroll Verification Required'\",\n        \"Links to a convincing replica of the company's internal HR portal (hr-megamfg-portal.com vs actual hr.megamfg.com)\",\n        \"Emails were sent through a compromised marketing automation platform\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The sudden and unusual volume of emails with suspicious subject lines triggered suspicion.\",\n            \"conclusion\": \"Phishing campaign is likely in progress.\"\n        },\n        {\n            \"step\": \"The convincing replica of the company's internal HR portal suggests a targeted attack.\",\n            \"conclusion\": \"Attackers are attempting to trick employees into entering their credentials.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Block access to hr-megamfg-portal.com and notify affected employees\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further unauthorized access and minimize potential damage\"\n        },\n        {\n            \"action\": \"Conduct a thorough investigation of the compromised marketing automation platform\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify the root cause of the compromise and prevent future attacks\"\n        }\n    ],\n    \"false_positive_assessment\": \"The unusual volume of emails, convincing replica of HR portal, and compromised marketing automation platform all contribute to a high confidence in this being a genuine phishing campaign.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Phishing",
+        "severity_level": 4,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The attackers used a convincing replica of the company's internal HR portal to trick employees into entering their credentials."
+          }
+        ],
+        "detected_indicators": [
+          "45 emails received in 2 hours with subject lines referencing 'Updated W-2 Forms' and 'Urgent: Payroll Verification Required'",
+          "Links to a convincing replica of the company's internal HR portal (hr-megamfg-portal.com vs actual hr.megamfg.com)",
+          "Emails were sent through a compromised marketing automation platform"
+        ],
+        "reasoning_chain": "[{'step': 'The sudden and unusual volume of emails with suspicious subject lines triggered suspicion.', 'conclusion': 'Phishing campaign is likely in progress.'}, {'step': \"The convincing replica of the company's internal HR portal suggests a targeted attack.\", 'conclusion': 'Attackers are attempting to trick employees into entering their credentials.'}]",
+        "recommended_actions": [
+          {
+            "action": "Block access to hr-megamfg-portal.com and notify affected employees",
+            "priority": "Immediate",
+            "rationale": "To prevent further unauthorized access and minimize potential damage"
+          },
+          {
+            "action": "Conduct a thorough investigation of the compromised marketing automation platform",
+            "priority": "Short-term",
+            "rationale": "To identify the root cause of the compromise and prevent future attacks"
+          }
+        ],
+        "false_positive_assessment": "The unusual volume of emails, convincing replica of HR portal, and compromised marketing automation platform all contribute to a high confidence in this being a genuine phishing campaign.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Phishing",
+        "ground_truth_classification": "Phishing",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.5,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1566.002",
+          "T1586.002"
+        ],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-019",
+      "inference_time_seconds": 38.953,
+      "raw_output": "{\n    \"threat_classification\": \"BEC Payment Fraud\",\n    \"severity_level\": 5,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker used a targeted email to gain initial access and manipulate the CFO\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Email from ceo.name@megamfg-corp.com requesting urgent wire transfer of $890,000\",\n        \"Reference to real acquisition target discussed in board meeting last week\"\n    ],\n    \"reasoning_chain\": \"The email's urgency and request for a large wire transfer are suspicious. The reference to a real acquisition target suggests the attacker has insider knowledge or compromised board communications. This combination of factors strongly indicates a Business Email Compromise (BEC) attack.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify CEO's identity before processing any financial transactions\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent unauthorized wire transfers\"\n        },\n        {\n            \"action\": \"Implement additional authentication measures for CFO and other finance personnel\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To reduce the risk of future attacks\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive due to the combination of suspicious indicators, including the urgent request for a large wire transfer and the reference to a real acquisition target discussed in a board meeting.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "BEC Payment Fraud",
+        "severity_level": 5,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing",
+            "tactic": "Initial Access",
+            "relevance": "The attacker used a targeted email to gain initial access and manipulate the CFO"
+          }
+        ],
+        "detected_indicators": [
+          "Email from ceo.name@megamfg-corp.com requesting urgent wire transfer of $890,000",
+          "Reference to real acquisition target discussed in board meeting last week"
+        ],
+        "reasoning_chain": "The email's urgency and request for a large wire transfer are suspicious. The reference to a real acquisition target suggests the attacker has insider knowledge or compromised board communications. This combination of factors strongly indicates a Business Email Compromise (BEC) attack.",
+        "recommended_actions": [
+          {
+            "action": "Verify CEO's identity before processing any financial transactions",
+            "priority": "Immediate",
+            "rationale": "To prevent unauthorized wire transfers"
+          },
+          {
+            "action": "Implement additional authentication measures for CFO and other finance personnel",
+            "priority": "Short-term",
+            "rationale": "To reduce the risk of future attacks"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive due to the combination of suspicious indicators, including the urgent request for a large wire transfer and the reference to a real acquisition target discussed in a board meeting.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "BEC Payment Fraud",
+        "ground_truth_classification": "BEC Payment Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 5,
+        "severity_ground_truth": 5,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.5,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1566.002",
+          "T1534"
+        ],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-020",
+      "inference_time_seconds": 31.177,
+      "raw_output": "{\n    \"threat_classification\": \"Invoice Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The supplier's email system was compromised, allowing an attacker to send a fraudulent invoice.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Invoice amount matches purchase order PO-44521\",\n        \"Banking details on the invoice differ from PartsCo's records on file\"\n    ],\n    \"reasoning_chain\": \"The anomaly in the banking details and the supplier's confirmation that their email system was compromised suggest a fraudulent invoice. The fact that the invoice amount matches the purchase order supports this conclusion.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify all invoices from PartsCo using multiple communication channels\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent further fraudulent activities and ensure accurate payment processing\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive due to the combination of unusual banking details and the supplier's confirmation that their email system was compromised.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Invoice Fraud",
+        "severity_level": 4,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The supplier's email system was compromised, allowing an attacker to send a fraudulent invoice."
+          }
+        ],
+        "detected_indicators": [
+          "Invoice amount matches purchase order PO-44521",
+          "Banking details on the invoice differ from PartsCo's records on file"
+        ],
+        "reasoning_chain": "The anomaly in the banking details and the supplier's confirmation that their email system was compromised suggest a fraudulent invoice. The fact that the invoice amount matches the purchase order supports this conclusion.",
+        "recommended_actions": [
+          {
+            "action": "Verify all invoices from PartsCo using multiple communication channels",
+            "priority": "immediate",
+            "rationale": "To prevent further fraudulent activities and ensure accurate payment processing"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive due to the combination of unusual banking details and the supplier's confirmation that their email system was compromised.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Invoice Fraud",
+        "ground_truth_classification": "BEC Payment Fraud",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 4,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1566",
+          "T1534"
+        ],
+        "hallucinated_techniques": [
+          "T1566.002"
+        ],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-021",
+      "inference_time_seconds": 51.886,
+      "raw_output": "{\n    \"threat_classification\": \"BEC Payment Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attacker used a spearphishing email to gain initial access and manipulate the victim's account payable system.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-04-20T09:30:00Z\",\n            \"source_organization\": \"AutoCorp Manufacturing\",\n            \"event_type\": \"Banking Detail Change Request\"\n        }\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The email request for banking detail change is unusual, as it's a sudden change and not part of the normal payment process.\",\n            \"logic\": \"This suggests that the attacker may be trying to manipulate the victim's account payable system.\"\n        },\n        {\n            \"step\": \"The email came from a verified domain, but the request was still suspicious due to its unusual nature.\",\n            \"logic\": \"This could indicate that the attacker has compromised the GlobalSteel email system or is using a legitimate-looking email template.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify all banking detail changes through multiple channels, including phone calls and official bank statements.\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"This will help prevent potential fraudulent activities from occurring.\"\n        },\n        {\n            \"action\": \"Monitor the GlobalSteel email system for any unusual activity or suspicious emails.\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"This will help identify and respond to any potential attacks in a timely manner.\"\n        }\n    ],\n    \"false_positive_assessment\": [\n        {\n            \"factor\": \"The request was made by a legitimate supplier, GlobalSteel.\",\n            \"assessment\": \"While this factor reduces the likelihood of a false positive, it's still important to verify all banking detail changes through multiple channels.\"\n        }\n    ]\n}",
+      "parsed_assessment": {
+        "threat_classification": "BEC Payment Fraud",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing",
+            "tactic": "Initial Access",
+            "relevance": "The attacker used a spearphishing email to gain initial access and manipulate the victim's account payable system."
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-04-20T09:30:00Z",
+            "source_organization": "AutoCorp Manufacturing",
+            "event_type": "Banking Detail Change Request"
+          }
+        ],
+        "reasoning_chain": "[{'step': \"The email request for banking detail change is unusual, as it's a sudden change and not part of the normal payment process.\", 'logic': \"This suggests that the attacker may be trying to manipulate the victim's account payable system.\"}, {'step': 'The email came from a verified domain, but the request was still suspicious due to its unusual nature.', 'logic': 'This could indicate that the attacker has compromised the GlobalSteel email system or is using a legitimate-looking email template.'}]",
+        "recommended_actions": [
+          {
+            "action": "Verify all banking detail changes through multiple channels, including phone calls and official bank statements.",
+            "priority": "Immediate",
+            "rationale": "This will help prevent potential fraudulent activities from occurring."
+          },
+          {
+            "action": "Monitor the GlobalSteel email system for any unusual activity or suspicious emails.",
+            "priority": "Short-term",
+            "rationale": "This will help identify and respond to any potential attacks in a timely manner."
+          }
+        ],
+        "false_positive_assessment": "[{'factor': 'The request was made by a legitimate supplier, GlobalSteel.', 'assessment': \"While this factor reduces the likelihood of a false positive, it's still important to verify all banking detail changes through multiple channels.\"}]",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "BEC Payment Fraud",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": false,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 4,
+        "severity_ground_truth": 1,
+        "severity_error": 3,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-022",
+      "inference_time_seconds": 45.597,
+      "raw_output": "{\n    \"threat_classification\": \"Phishing\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The sudden surge in sign-ups for the new online procurement platform, coinciding with the supplier conference, suggests an attempt to gather sensitive information or gain unauthorized access.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"50,000 requests per minute (normal: 500 rpm)\",\n        \"2,300 unique IP addresses across 40 countries\",\n        \"95% HTTP response codes are 200 OK\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The sudden and sustained traffic spike is unusual for a typical web application.\",\n            \"conclusion\": \"This suggests an attempt to gather sensitive information or gain unauthorized access.\"\n        },\n        {\n            \"step\": \"The high number of unique IP addresses across multiple countries indicates a coordinated effort.\",\n            \"conclusion\": \"This further supports the hypothesis that this is not a benign event.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Implement temporary rate limiting and IP blocking for the supplier portal\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent further unauthorized access or data exfiltration\"\n        },\n        {\n            \"action\": \"Conduct a thorough review of new sign-ups and monitor user behavior\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To identify potential phishing victims and prevent further compromise\"\n        }\n    ],\n    \"false_positive_assessment\": \"While the traffic spike could be attributed to legitimate interest in the new online procurement platform, the unusual volume and geographic distribution of requests suggest a more malicious intent.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Phishing",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The sudden surge in sign-ups for the new online procurement platform, coinciding with the supplier conference, suggests an attempt to gather sensitive information or gain unauthorized access."
+          }
+        ],
+        "detected_indicators": [
+          "50,000 requests per minute (normal: 500 rpm)",
+          "2,300 unique IP addresses across 40 countries",
+          "95% HTTP response codes are 200 OK"
+        ],
+        "reasoning_chain": "[{'step': 'The sudden and sustained traffic spike is unusual for a typical web application.', 'conclusion': 'This suggests an attempt to gather sensitive information or gain unauthorized access.'}, {'step': 'The high number of unique IP addresses across multiple countries indicates a coordinated effort.', 'conclusion': 'This further supports the hypothesis that this is not a benign event.'}]",
+        "recommended_actions": [
+          {
+            "action": "Implement temporary rate limiting and IP blocking for the supplier portal",
+            "priority": "immediate",
+            "rationale": "To prevent further unauthorized access or data exfiltration"
+          },
+          {
+            "action": "Conduct a thorough review of new sign-ups and monitor user behavior",
+            "priority": "short-term",
+            "rationale": "To identify potential phishing victims and prevent further compromise"
+          }
+        ],
+        "false_positive_assessment": "While the traffic spike could be attributed to legitimate interest in the new online procurement platform, the unusual volume and geographic distribution of requests suggest a more malicious intent.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Phishing",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": false,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 4,
+        "severity_ground_truth": 1,
+        "severity_error": 3,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-023",
+      "inference_time_seconds": 41.22,
+      "raw_output": "{\n    \"threat_classification\": \"Benign/Normal\",\n    \"severity_level\": 1,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1190\",\n            \"technique_name\": \"Automated Decision-Making\",\n            \"tactic\": \"Defense Evasion\",\n            \"relevance\": \"The ERP system's transaction recovery mechanism is an automated process that can be misinterpreted as malicious activity.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-06-01T02:00:00Z\",\n            \"source_organization\": \"PrecisionMfg Inc\",\n            \"event_type\": \"System Modification Alert\"\n        }\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The scheduled maintenance caused intermittent connectivity to the procurement module.\",\n            \"conclusion\": \"This is a normal system behavior.\"\n        },\n        {\n            \"step\": \"23 purchase orders showed 'modified' status in the audit log.\",\n            \"conclusion\": \"These modifications were automatic rollbacks performed by the ERP system's transaction recovery mechanism after database failover.\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify and document all future maintenance activities to ensure accurate logging and auditing.\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"This will help prevent misinterpretation of normal system behavior as malicious activity in the future.\"\n        }\n    ],\n    \"false_positive_assessment\": \"The lack of any suspicious or unusual activity during the maintenance window, combined with the automatic rollbacks performed by the ERP system's transaction recovery mechanism, suggests that this event is likely a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Benign/Normal",
+        "severity_level": 1,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1190",
+            "technique_name": "Automated Decision-Making",
+            "tactic": "Defense Evasion",
+            "relevance": "The ERP system's transaction recovery mechanism is an automated process that can be misinterpreted as malicious activity."
+          }
+        ],
+        "detected_indicators": [
+          {
+            "timestamp": "2025-06-01T02:00:00Z",
+            "source_organization": "PrecisionMfg Inc",
+            "event_type": "System Modification Alert"
+          }
+        ],
+        "reasoning_chain": "[{'step': 'The scheduled maintenance caused intermittent connectivity to the procurement module.', 'conclusion': 'This is a normal system behavior.'}, {'step': \"23 purchase orders showed 'modified' status in the audit log.\", 'conclusion': \"These modifications were automatic rollbacks performed by the ERP system's transaction recovery mechanism after database failover.\"}]",
+        "recommended_actions": [
+          {
+            "action": "Verify and document all future maintenance activities to ensure accurate logging and auditing.",
+            "priority": "short-term",
+            "rationale": "This will help prevent misinterpretation of normal system behavior as malicious activity in the future."
+          }
+        ],
+        "false_positive_assessment": "The lack of any suspicious or unusual activity during the maintenance window, combined with the automatic rollbacks performed by the ERP system's transaction recovery mechanism, suggests that this event is likely a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Benign/Normal",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": true,
+        "predicted_is_attack": false,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 1,
+        "severity_ground_truth": 1,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1190"
+        ],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-024",
+      "inference_time_seconds": 35.95,
+      "raw_output": "{\n    \"threat_classification\": \"Benign/Normal\",\n    \"severity_level\": 1,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": T1496.001,\n            \"technique_name\": \"Scheduled Job Execution\",\n            \"tactic\": \"Defense Evasion\",\n            \"relevance\": \"The scheduled backup job execution matches the company's IT calendar, indicating a legitimate process\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"300% increase in data transfer between production floor network and cloud backup service\",\n        \"85 GB data transferred over 4 hours\",\n        \"Backup job ID BK-2025-Q2-001 matches scheduled task\"\n    ],\n    \"reasoning_chain\": \"The sudden increase in data transfer coincides with the quarterly production data archival process, which is a legitimate scheduled task. The encryption of data with the company's KMS key and the matching backup job ID further support this conclusion.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify the integrity of archived data\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To ensure the authenticity of the backed-up data\"\n        }\n    ],\n    \"false_positive_assessment\": \"This event may be a false positive if there is no corresponding increase in production volume or other legitimate explanations for the increased data transfer. However, the presence of scheduled job execution and matching backup job ID reduces the likelihood of a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "PARSE_ERROR",
+        "severity_level": 0,
+        "confidence": 0.0,
+        "mitre_attack_techniques": [],
+        "detected_indicators": [],
+        "reasoning_chain": "",
+        "recommended_actions": [],
+        "false_positive_assessment": "",
+        "parse_success": false,
+        "parse_errors": [
+          "FATAL: Could not extract valid JSON from response"
+        ]
+      },
+      "output_completeness": 0.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "PARSE_ERROR",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": false,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 0,
+        "severity_ground_truth": 1,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 1.0,
+        "predicted_techniques": [],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.0
+      }
+    },
+    {
+      "scenario_id": "SC-025",
+      "inference_time_seconds": 41.28,
+      "raw_output": "{\n    \"threat_classification\": \"Benign/Normal\",\n    \"severity_level\": 1,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1534\",\n            \"technique_name\": \"Create or Modify Existing Accounts\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The onboarding process involves creating a new supplier account, which is a normal part of the vendor management system\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"New supplier 'EcoPlastics Thailand' was onboarded into the vendor management system\",\n        \"Supplier passed ISO 9001 audit, financial stability check (D&B rating: 5A1), and reference checks with two existing customers\",\n        \"All onboarding documentation (tax certificates, insurance, banking details) was verified through the standard 4-step approval workflow\"\n    ],\n    \"reasoning_chain\": [\n        {\n            \"step\": \"The onboarding process involves creating a new supplier account, which is a normal part of the vendor management system\",\n            \"conclusion\": \"This event does not indicate any malicious activity\"\n        }\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify the supplier's credentials and documentation as part of the regular onboarding process\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To ensure that all necessary checks are performed to validate the supplier's identity and legitimacy\"\n        }\n    ],\n    \"false_positive_assessment\": \"This event is likely a false positive due to the normal nature of the onboarding process, but it is still important to verify the supplier's credentials as part of the regular onboarding process\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Benign/Normal",
+        "severity_level": 1,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1534",
+            "technique_name": "Create or Modify Existing Accounts",
+            "tactic": "Initial Access",
+            "relevance": "The onboarding process involves creating a new supplier account, which is a normal part of the vendor management system"
+          }
+        ],
+        "detected_indicators": [
+          "New supplier 'EcoPlastics Thailand' was onboarded into the vendor management system",
+          "Supplier passed ISO 9001 audit, financial stability check (D&B rating: 5A1), and reference checks with two existing customers",
+          "All onboarding documentation (tax certificates, insurance, banking details) was verified through the standard 4-step approval workflow"
+        ],
+        "reasoning_chain": "[{'step': 'The onboarding process involves creating a new supplier account, which is a normal part of the vendor management system', 'conclusion': 'This event does not indicate any malicious activity'}]",
+        "recommended_actions": [
+          {
+            "action": "Verify the supplier's credentials and documentation as part of the regular onboarding process",
+            "priority": "short-term",
+            "rationale": "To ensure that all necessary checks are performed to validate the supplier's identity and legitimacy"
+          }
+        ],
+        "false_positive_assessment": "This event is likely a false positive due to the normal nature of the onboarding process, but it is still important to verify the supplier's credentials as part of the regular onboarding process",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Benign/Normal",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": true,
+        "predicted_is_attack": false,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 1,
+        "severity_ground_truth": 1,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1534"
+        ],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-026",
+      "inference_time_seconds": 37.083,
+      "raw_output": "{\n    \"threat_classification\": \"Benign/Normal\",\n    \"severity_level\": 1,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": T1190,\n            \"technique_name\": Privilege Escalation,\n            \"tactic\": Persistence,\n            \"relevance\": The technique applies because the actor (p.nguyen) is using their legitimate privileges to access the database\n        }\n    ],\n    \"detected_indicators\": [\n        p.nguyen's access logs show they pulled 50,000 records from the order management table at 11:30 PM,\n        HR records confirm p.nguyen is currently on the on-call rotation for database incident response,\n        A Jira ticket (INC-4421) was filed at 11:15 PM reporting slow query performance on the order management module\n    ],\n    \"reasoning_chain\": The actor's actions match the standard diagnostic procedure, and the timing of the event coincides with a legitimate incident response task. There is no evidence of malicious activity or unusual behavior.\n    \"recommended_actions\": [\n        {\n            \"action\": Verify the integrity of the database and order management module,\n            \"priority\": immediate,\n            \"rationale\": To ensure that the database and module are functioning correctly and to identify any potential issues\n        }\n    ],\n    \"false_positive_assessment\": This event may be a false positive if additional information is discovered that suggests malicious intent, but based on the available data, it appears to be a legitimate incident response activity.\n}",
+      "parsed_assessment": {
+        "threat_classification": "PARSE_ERROR",
+        "severity_level": 0,
+        "confidence": 0.0,
+        "mitre_attack_techniques": [],
+        "detected_indicators": [],
+        "reasoning_chain": "",
+        "recommended_actions": [],
+        "false_positive_assessment": "",
+        "parse_success": false,
+        "parse_errors": [
+          "FATAL: Could not extract valid JSON from response"
+        ]
+      },
+      "output_completeness": 0.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "PARSE_ERROR",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": false,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 0,
+        "severity_ground_truth": 1,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 1.0,
+        "predicted_techniques": [],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.0
+      }
+    },
+    {
+      "scenario_id": "SC-027",
+      "inference_time_seconds": 39.487,
+      "raw_output": "{\n    \"threat_classification\": \"Phishing\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Spearphishing Link\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attackers used a legitimate compromised SharePoint site to host the phishing page, bypassing URL reputation filters.\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Phishing email campaign targeting 200 employees with a fake Microsoft 365 login page\",\n        \"18 employees entered credentials before the security team blocked the URL\"\n    ],\n    \"reasoning_chain\": \"The combination of a targeted phishing campaign using a legitimate compromised SharePoint site and the number of employees who fell victim to the attack suggests a sophisticated phishing attempt. The fact that the attackers were able to access the procurement system and submit fraudulent purchase orders further supports this classification.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Implement multi-factor authentication for all procurement system users\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent unauthorized access to the procurement system\"\n        },\n        {\n            \"action\": \"Conduct employee training on phishing awareness and response\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To reduce the likelihood of future successful phishing attacks\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is unlikely to be a false positive due to the combination of indicators, including the use of a legitimate compromised SharePoint site and the number of employees who fell victim to the attack.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Phishing",
+        "severity_level": 4,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Spearphishing Link",
+            "tactic": "Initial Access",
+            "relevance": "The attackers used a legitimate compromised SharePoint site to host the phishing page, bypassing URL reputation filters."
+          }
+        ],
+        "detected_indicators": [
+          "Phishing email campaign targeting 200 employees with a fake Microsoft 365 login page",
+          "18 employees entered credentials before the security team blocked the URL"
+        ],
+        "reasoning_chain": "The combination of a targeted phishing campaign using a legitimate compromised SharePoint site and the number of employees who fell victim to the attack suggests a sophisticated phishing attempt. The fact that the attackers were able to access the procurement system and submit fraudulent purchase orders further supports this classification.",
+        "recommended_actions": [
+          {
+            "action": "Implement multi-factor authentication for all procurement system users",
+            "priority": "immediate",
+            "rationale": "To prevent unauthorized access to the procurement system"
+          },
+          {
+            "action": "Conduct employee training on phishing awareness and response",
+            "priority": "short-term",
+            "rationale": "To reduce the likelihood of future successful phishing attacks"
+          }
+        ],
+        "false_positive_assessment": "This assessment is unlikely to be a false positive due to the combination of indicators, including the use of a legitimate compromised SharePoint site and the number of employees who fell victim to the attack.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": true,
+        "predicted_classification": "Phishing",
+        "ground_truth_classification": "Phishing",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 4,
+        "severity_ground_truth": 5,
+        "severity_error": 1,
+        "technique_overlap_jaccard": 0.333,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [
+          "T1566.002",
+          "T1078",
+          "T1565.001"
+        ],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.9
+      }
+    },
+    {
+      "scenario_id": "SC-028",
+      "inference_time_seconds": 46.194,
+      "raw_output": "{\n    \"threat_classification\": \"Invoice Fraud\",\n    \"severity_level\": 4,\n    \"confidence\": 0.8,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Phishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The invoice amount deviation and the need for emergency fuel supplements may be a ruse to gain trust and manipulate the payment process.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"invoice_amount\": \"$78,500\"\n        },\n        {\n            \"contracted_rate\": \"12% lower than usual\"\n        },\n        {\n            \"industry-wide surcharge\": \"Unusual for all logistics providers to apply the same surcharge simultaneously\"\n        }\n    ],\n    \"reasoning_chain\": [\n        \"The invoice amount deviation from the contracted rate is unusual and may indicate fraudulent activity.\",\n        \"The need for emergency fuel supplements, although plausible, seems suspicious given the simultaneous application of the same surcharge by multiple logistics providers.\",\n        \"Phishing tactics are often used to gain trust and manipulate financial transactions.\"\n    ],\n    \"recommended_actions\": [\n        {\n            \"action\": \"Verify invoice details with QuickShip Logistics\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To confirm the legitimacy of the invoice and prevent potential fraud\"\n        },\n        {\n            \"action\": \"Monitor accounts payable system for similar deviations\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify potential patterns or anomalies in financial transactions\"\n        }\n    ],\n    \"false_positive_assessment\": \"This assessment is based on the unusual circumstances surrounding the invoice amount deviation and the simultaneous application of the same surcharge by multiple logistics providers. However, it may be a false positive if QuickShip Logistics can provide valid documentation supporting the emergency fuel supplements and the contracted rate has been revised accordingly.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Invoice Fraud",
+        "severity_level": 4,
+        "confidence": 0.8,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Phishing",
+            "tactic": "Initial Access",
+            "relevance": "The invoice amount deviation and the need for emergency fuel supplements may be a ruse to gain trust and manipulate the payment process."
+          }
+        ],
+        "detected_indicators": [
+          {
+            "invoice_amount": "$78,500"
+          },
+          {
+            "contracted_rate": "12% lower than usual"
+          },
+          {
+            "industry-wide surcharge": "Unusual for all logistics providers to apply the same surcharge simultaneously"
+          }
+        ],
+        "reasoning_chain": "['The invoice amount deviation from the contracted rate is unusual and may indicate fraudulent activity.', 'The need for emergency fuel supplements, although plausible, seems suspicious given the simultaneous application of the same surcharge by multiple logistics providers.', 'Phishing tactics are often used to gain trust and manipulate financial transactions.']",
+        "recommended_actions": [
+          {
+            "action": "Verify invoice details with QuickShip Logistics",
+            "priority": "Immediate",
+            "rationale": "To confirm the legitimacy of the invoice and prevent potential fraud"
+          },
+          {
+            "action": "Monitor accounts payable system for similar deviations",
+            "priority": "Short-term",
+            "rationale": "To identify potential patterns or anomalies in financial transactions"
+          }
+        ],
+        "false_positive_assessment": "This assessment is based on the unusual circumstances surrounding the invoice amount deviation and the simultaneous application of the same surcharge by multiple logistics providers. However, it may be a false positive if QuickShip Logistics can provide valid documentation supporting the emergency fuel supplements and the contracted rate has been revised accordingly.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Invoice Fraud",
+        "ground_truth_classification": "Benign/Normal",
+        "is_attack_correct": false,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": false,
+        "severity_predicted": 4,
+        "severity_ground_truth": 2,
+        "severity_error": 2,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002"
+        ],
+        "ground_truth_techniques": [],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "scenario_id": "SC-029",
+      "inference_time_seconds": 39.9,
+      "raw_output": "{\n    \"threat_classification\": \"DDoS\",\n    \"severity_level\": 4,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1562.001\",\n            \"technique_name\": \"Exploitation of Remote Services\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attack exploited a vulnerability in the supplier portal's remote services to launch the DDoS attack.\"\n        }\n    ],\n    \"detected_indicators\": [\n        {\n            \"timestamp\": \"2025-03-22T12:00:00Z\",\n            \"traffic_volume\": 2.1 Gbps,\n            \"botnet_size\": 15,000 compromised IoT devices\n        }\n    ],\n    \"reasoning_chain\": \"The sudden and sustained traffic surge from a botnet of compromised IoT devices is indicative of a DDoS attack. The fact that the attack was claimed by a hacktivist group citing environmental concerns further supports this classification.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Implement additional DDoS mitigation measures\",\n            \"priority\": \"immediate\",\n            \"rationale\": \"To prevent future attacks and minimize downtime\"\n        },\n        {\n            \"action\": \"Conduct a thorough security assessment of the supplier portal\",\n            \"priority\": \"short-term\",\n            \"rationale\": \"To identify vulnerabilities that could be exploited by attackers\"\n        }\n    ],\n    \"false_positive_assessment\": \"This event is unlikely to be a false positive due to the presence of specific indicators such as the sudden traffic surge and the claim of responsibility from a hacktivist group.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "PARSE_ERROR",
+        "severity_level": 0,
+        "confidence": 0.0,
+        "mitre_attack_techniques": [],
+        "detected_indicators": [],
+        "reasoning_chain": "",
+        "recommended_actions": [],
+        "false_positive_assessment": "",
+        "parse_success": false,
+        "parse_errors": [
+          "FATAL: Could not extract valid JSON from response"
+        ]
+      },
+      "output_completeness": 0.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "PARSE_ERROR",
+        "ground_truth_classification": "DDoS",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 0,
+        "severity_ground_truth": 4,
+        "severity_error": 4,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [],
+        "ground_truth_techniques": [
+          "T1498",
+          "T1499"
+        ],
+        "hallucinated_techniques": [],
+        "confidence_score": 0.0
+      }
+    },
+    {
+      "scenario_id": "SC-030",
+      "inference_time_seconds": 47.193,
+      "raw_output": "{\n    \"threat_classification\": \"Ransomware\",\n    \"severity_level\": 5,\n    \"confidence\": 0.9,\n    \"mitre_attack_techniques\": [\n        {\n            \"technique_id\": \"T1566.002\",\n            \"technique_name\": \"Phishing\",\n            \"tactic\": \"Initial Access\",\n            \"relevance\": \"The attackers used phishing emails to compromise the contractor credentials, which were then used to gain access to the VPN\"\n        },\n        {\n            \"technique_id\": \"T1190\",\n            \"technique_name\": \"Exploitation of Remote Services\",\n            \"tactic\": \"Persistence\",\n            \"relevance\": \"The attackers exploited the compromised VPN to move laterally and gain access to other systems\"\n        }\n    ],\n    \"detected_indicators\": [\n        \"Simultaneous anomalies detected across three supply chain tiers\",\n        \"Compromised VPN credentials from contractor\",\n        \"Fraudulent purchase orders submitted through the compromised VPN\",\n        \"Reconnaissance scanning originating from MidTech's compromised network segment\"\n    ],\n    \"reasoning_chain\": \"The simultaneous detection of anomalies across multiple supply chain tiers suggests a coordinated attack. The use of phishing emails to compromise contractor credentials and the exploitation of the compromised VPN to move laterally are both indicative of a ransomware attack.\",\n    \"recommended_actions\": [\n        {\n            \"action\": \"Isolate affected systems and networks\",\n            \"priority\": \"Immediate\",\n            \"rationale\": \"To prevent further lateral movement and data exfiltration\"\n        },\n        {\n            \"action\": \"Conduct thorough forensic analysis\",\n            \"priority\": \"Short-term\",\n            \"rationale\": \"To identify the exact ransomware variant and any potential command and control channels\"\n        }\n    ],\n    \"false_positive_assessment\": \"The simultaneous detection of anomalies across multiple supply chain tiers, combined with the use of phishing emails and exploitation of a compromised VPN, makes it unlikely that this is a false positive.\"\n}",
+      "parsed_assessment": {
+        "threat_classification": "Ransomware",
+        "severity_level": 5,
+        "confidence": 0.9,
+        "mitre_attack_techniques": [
+          {
+            "technique_id": "T1566.002",
+            "technique_name": "Phishing",
+            "tactic": "Initial Access",
+            "relevance": "The attackers used phishing emails to compromise the contractor credentials, which were then used to gain access to the VPN"
+          },
+          {
+            "technique_id": "T1190",
+            "technique_name": "Exploitation of Remote Services",
+            "tactic": "Persistence",
+            "relevance": "The attackers exploited the compromised VPN to move laterally and gain access to other systems"
+          }
+        ],
+        "detected_indicators": [
+          "Simultaneous anomalies detected across three supply chain tiers",
+          "Compromised VPN credentials from contractor",
+          "Fraudulent purchase orders submitted through the compromised VPN",
+          "Reconnaissance scanning originating from MidTech's compromised network segment"
+        ],
+        "reasoning_chain": "The simultaneous detection of anomalies across multiple supply chain tiers suggests a coordinated attack. The use of phishing emails to compromise contractor credentials and the exploitation of the compromised VPN to move laterally are both indicative of a ransomware attack.",
+        "recommended_actions": [
+          {
+            "action": "Isolate affected systems and networks",
+            "priority": "Immediate",
+            "rationale": "To prevent further lateral movement and data exfiltration"
+          },
+          {
+            "action": "Conduct thorough forensic analysis",
+            "priority": "Short-term",
+            "rationale": "To identify the exact ransomware variant and any potential command and control channels"
+          }
+        ],
+        "false_positive_assessment": "The simultaneous detection of anomalies across multiple supply chain tiers, combined with the use of phishing emails and exploitation of a compromised VPN, makes it unlikely that this is a false positive.",
+        "parse_success": true,
+        "parse_errors": []
+      },
+      "output_completeness": 1.0,
+      "evaluation": {
+        "classification_correct": false,
+        "predicted_classification": "Ransomware",
+        "ground_truth_classification": "Network Intrusion",
+        "is_attack_correct": true,
+        "predicted_is_attack": true,
+        "ground_truth_is_attack": true,
+        "severity_predicted": 5,
+        "severity_ground_truth": 5,
+        "severity_error": 0,
+        "technique_overlap_jaccard": 0.0,
+        "predicted_techniques": [
+          "T1566.002",
+          "T1190"
+        ],
+        "ground_truth_techniques": [
+          "T1133",
+          "T1078",
+          "T1046",
+          "T1565.001"
+        ],
+        "hallucinated_techniques": [
+          "T1190",
+          "T1566.002"
+        ],
+        "confidence_score": 0.9
+      }
+    }
+  ]
+}
