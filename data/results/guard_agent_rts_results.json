@@ -1,0 +1,1127 @@
+{
+  "experiment": "Week 5 - Full RTS Integration",
+  "timestamp": "2026-04-07T18:07:00.831902",
+  "rts_formula": "RTS(O) = \u03b1\u00b7C(O) + \u03b2\u00b7V(O) + \u03b3\u00b7S(O)",
+  "summary": {
+    "mean_rts": 0.7178,
+    "std_rts": 0.1277,
+    "min_rts": 0.4624,
+    "max_rts": 0.918,
+    "mean_rts_correct": 0.7653,
+    "mean_rts_incorrect": 0.6467,
+    "rts_gap": 0.1186,
+    "mean_C": 0.7322,
+    "mean_V": 0.9283,
+    "mean_S": 0.5981
+  },
+  "weight_calibration": {
+    "best_weights": {
+      "alpha": 0.4,
+      "beta": 0.2,
+      "gamma": 0.4
+    },
+    "best_gap": 0.1186,
+    "all_options": [
+      {
+        "weights": {
+          "alpha": 0.33,
+          "beta": 0.33,
+          "gamma": 0.33
+        },
+        "mean_rts_correct": 0.7907,
+        "mean_rts_incorrect": 0.6962,
+        "gap": 0.0945
+      },
+      {
+        "weights": {
+          "alpha": 0.4,
+          "beta": 0.3,
+          "gamma": 0.3
+        },
+        "mean_rts_correct": 0.7916,
+        "mean_rts_incorrect": 0.6897,
+        "gap": 0.1019
+      },
+      {
+        "weights": {
+          "alpha": 0.3,
+          "beta": 0.4,
+          "gamma": 0.3
+        },
+        "mean_rts_correct": 0.8035,
+        "mean_rts_incorrect": 0.7209,
+        "gap": 0.0825
+      },
+      {
+        "weights": {
+          "alpha": 0.3,
+          "beta": 0.3,
+          "gamma": 0.4
+        },
+        "mean_rts_correct": 0.7771,
+        "mean_rts_incorrect": 0.6779,
+        "gap": 0.0992
+      },
+      {
+        "weights": {
+          "alpha": 0.5,
+          "beta": 0.25,
+          "gamma": 0.25
+        },
+        "mean_rts_correct": 0.7929,
+        "mean_rts_incorrect": 0.6799,
+        "gap": 0.113
+      },
+      {
+        "weights": {
+          "alpha": 0.25,
+          "beta": 0.5,
+          "gamma": 0.25
+        },
+        "mean_rts_correct": 0.8226,
+        "mean_rts_incorrect": 0.7581,
+        "gap": 0.0645
+      },
+      {
+        "weights": {
+          "alpha": 0.25,
+          "beta": 0.25,
+          "gamma": 0.5
+        },
+        "mean_rts_correct": 0.7567,
+        "mean_rts_incorrect": 0.6505,
+        "gap": 0.1062
+      },
+      {
+        "weights": {
+          "alpha": 0.4,
+          "beta": 0.4,
+          "gamma": 0.2
+        },
+        "mean_rts_correct": 0.818,
+        "mean_rts_incorrect": 0.7327,
+        "gap": 0.0853
+      },
+      {
+        "weights": {
+          "alpha": 0.2,
+          "beta": 0.4,
+          "gamma": 0.4
+        },
+        "mean_rts_correct": 0.7889,
+        "mean_rts_incorrect": 0.7092,
+        "gap": 0.0798
+      },
+      {
+        "weights": {
+          "alpha": 0.4,
+          "beta": 0.2,
+          "gamma": 0.4
+        },
+        "mean_rts_correct": 0.7653,
+        "mean_rts_incorrect": 0.6467,
+        "gap": 0.1186
+      }
+    ]
+  },
+  "threshold_calibration": {
+    "all_thresholds": [
+      {
+        "threshold": 0.5,
+        "automation_rate": 0.9,
+        "human_review_rate": 0.1,
+        "hallucination_leakage": 0.3704,
+        "epsilon_bound": 0.3704,
+        "meets_epsilon_target": false,
+        "scenarios_above": 27,
+        "scenarios_below": 3,
+        "incorrect_passed": 10,
+        "unnecessary_escalation_rate": 0.3333
+      },
+      {
+        "threshold": 0.55,
+        "automation_rate": 0.8667,
+        "human_review_rate": 0.1333,
+        "hallucination_leakage": 0.3462,
+        "epsilon_bound": 0.3462,
+        "meets_epsilon_target": false,
+        "scenarios_above": 26,
+        "scenarios_below": 4,
+        "incorrect_passed": 9,
+        "unnecessary_escalation_rate": 0.25
+      },
+      {
+        "threshold": 0.6,
+        "automation_rate": 0.8333,
+        "human_review_rate": 0.1667,
+        "hallucination_leakage": 0.36,
+        "epsilon_bound": 0.36,
+        "meets_epsilon_target": false,
+        "scenarios_above": 25,
+        "scenarios_below": 5,
+        "incorrect_passed": 9,
+        "unnecessary_escalation_rate": 0.4
+      },
+      {
+        "threshold": 0.65,
+        "automation_rate": 0.6667,
+        "human_review_rate": 0.3333,
+        "hallucination_leakage": 0.2,
+        "epsilon_bound": 0.2,
+        "meets_epsilon_target": false,
+        "scenarios_above": 20,
+        "scenarios_below": 10,
+        "incorrect_passed": 4,
+        "unnecessary_escalation_rate": 0.2
+      },
+      {
+        "threshold": 0.7,
+        "automation_rate": 0.6,
+        "human_review_rate": 0.4,
+        "hallucination_leakage": 0.2222,
+        "epsilon_bound": 0.2222,
+        "meets_epsilon_target": false,
+        "scenarios_above": 18,
+        "scenarios_below": 12,
+        "incorrect_passed": 4,
+        "unnecessary_escalation_rate": 0.3333
+      },
+      {
+        "threshold": 0.75,
+        "automation_rate": 0.4667,
+        "human_review_rate": 0.5333,
+        "hallucination_leakage": 0.2857,
+        "epsilon_bound": 0.2857,
+        "meets_epsilon_target": false,
+        "scenarios_above": 14,
+        "scenarios_below": 16,
+        "incorrect_passed": 4,
+        "unnecessary_escalation_rate": 0.5
+      },
+      {
+        "threshold": 0.8,
+        "automation_rate": 0.3,
+        "human_review_rate": 0.7,
+        "hallucination_leakage": 0.0,
+        "epsilon_bound": 0.0,
+        "meets_epsilon_target": true,
+        "scenarios_above": 9,
+        "scenarios_below": 21,
+        "incorrect_passed": 0,
+        "unnecessary_escalation_rate": 0.4286
+      },
+      {
+        "threshold": 0.85,
+        "automation_rate": 0.1333,
+        "human_review_rate": 0.8667,
+        "hallucination_leakage": 0.0,
+        "epsilon_bound": 0.0,
+        "meets_epsilon_target": true,
+        "scenarios_above": 4,
+        "scenarios_below": 26,
+        "incorrect_passed": 0,
+        "unnecessary_escalation_rate": 0.5385
+      },
+      {
+        "threshold": 0.9,
+        "automation_rate": 0.0333,
+        "human_review_rate": 0.9667,
+        "hallucination_leakage": 0.0,
+        "epsilon_bound": 0.0,
+        "meets_epsilon_target": true,
+        "scenarios_above": 1,
+        "scenarios_below": 29,
+        "incorrect_passed": 0,
+        "unnecessary_escalation_rate": 0.5862
+      },
+      {
+        "threshold": 0.95,
+        "automation_rate": 0.0,
+        "human_review_rate": 1.0,
+        "hallucination_leakage": 0,
+        "epsilon_bound": 0,
+        "meets_epsilon_target": true,
+        "scenarios_above": 0,
+        "scenarios_below": 30,
+        "incorrect_passed": 0,
+        "unnecessary_escalation_rate": 0.6
+      }
+    ],
+    "optimal_threshold": 0.8,
+    "optimal_automation_rate": 0.3,
+    "optimal_epsilon": 0.0,
+    "epsilon_target": 0.05
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "SC-001",
+      "rts": {
+        "rts_score": 0.7497,
+        "components": {
+          "C_O": 0.6665,
+          "V_O": 0.895,
+          "S_O": 0.6875
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2222,
+          "beta_V": 0.2983,
+          "gamma_S": 0.2292
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7497,
+        "threshold": 0.7,
+        "margin": 0.0497,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-002",
+      "rts": {
+        "rts_score": 0.6808,
+        "components": {
+          "C_O": 0.63,
+          "V_O": 0.975,
+          "S_O": 0.4375
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.21,
+          "beta_V": 0.325,
+          "gamma_S": 0.1458
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.6808,
+        "threshold": 0.7,
+        "deficit": 0.0192,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-003",
+      "rts": {
+        "rts_score": 0.8253,
+        "components": {
+          "C_O": 0.8583,
+          "V_O": 0.93,
+          "S_O": 0.6875
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2861,
+          "beta_V": 0.31,
+          "gamma_S": 0.2292
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8253,
+        "threshold": 0.7,
+        "margin": 0.1253,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-004",
+      "rts": {
+        "rts_score": 0.7425,
+        "components": {
+          "C_O": 0.745,
+          "V_O": 0.795,
+          "S_O": 0.6875
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2483,
+          "beta_V": 0.265,
+          "gamma_S": 0.2292
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7425,
+        "threshold": 0.7,
+        "margin": 0.0425,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-005",
+      "rts": {
+        "rts_score": 0.8675,
+        "components": {
+          "C_O": 0.82,
+          "V_O": 0.97,
+          "S_O": 0.8125
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2733,
+          "beta_V": 0.3233,
+          "gamma_S": 0.2708
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8675,
+        "threshold": 0.7,
+        "margin": 0.1675,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-006",
+      "rts": {
+        "rts_score": 0.8872,
+        "components": {
+          "C_O": 0.8665,
+          "V_O": 0.97,
+          "S_O": 0.825
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2888,
+          "beta_V": 0.3233,
+          "gamma_S": 0.275
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8872,
+        "threshold": 0.7,
+        "margin": 0.1872,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-007",
+      "rts": {
+        "rts_score": 0.6372,
+        "components": {
+          "C_O": 0.8667,
+          "V_O": 0.945,
+          "S_O": 0.1
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2889,
+          "beta_V": 0.315,
+          "gamma_S": 0.0333
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.6372,
+        "threshold": 0.7,
+        "deficit": 0.0628,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-008",
+      "rts": {
+        "rts_score": 0.8658,
+        "components": {
+          "C_O": 0.83,
+          "V_O": 0.98,
+          "S_O": 0.7875
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2767,
+          "beta_V": 0.3267,
+          "gamma_S": 0.2625
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8658,
+        "threshold": 0.7,
+        "margin": 0.1658,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-009",
+      "rts": {
+        "rts_score": 0.8133,
+        "components": {
+          "C_O": 0.84,
+          "V_O": 0.975,
+          "S_O": 0.625
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.28,
+          "beta_V": 0.325,
+          "gamma_S": 0.2083
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8133,
+        "threshold": 0.7,
+        "margin": 0.1133,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-010",
+      "rts": {
+        "rts_score": 0.8271,
+        "components": {
+          "C_O": 0.785,
+          "V_O": 0.915,
+          "S_O": 0.7812
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2617,
+          "beta_V": 0.305,
+          "gamma_S": 0.2604
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8271,
+        "threshold": 0.7,
+        "margin": 0.1271,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-011",
+      "rts": {
+        "rts_score": 0.6958,
+        "components": {
+          "C_O": 0.73,
+          "V_O": 0.995,
+          "S_O": 0.3625
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2433,
+          "beta_V": 0.3317,
+          "gamma_S": 0.1208
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.6958,
+        "threshold": 0.7,
+        "deficit": 0.0042,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-012",
+      "rts": {
+        "rts_score": 0.868,
+        "components": {
+          "C_O": 0.7865,
+          "V_O": 0.98,
+          "S_O": 0.8375
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2622,
+          "beta_V": 0.3267,
+          "gamma_S": 0.2792
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.868,
+        "threshold": 0.7,
+        "margin": 0.168,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-013",
+      "rts": {
+        "rts_score": 0.7033,
+        "components": {
+          "C_O": 0.63,
+          "V_O": 0.98,
+          "S_O": 0.5
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.21,
+          "beta_V": 0.3267,
+          "gamma_S": 0.1667
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7033,
+        "threshold": 0.7,
+        "margin": 0.0033,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-014",
+      "rts": {
+        "rts_score": 0.7442,
+        "components": {
+          "C_O": 0.8,
+          "V_O": 0.77,
+          "S_O": 0.6625
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2667,
+          "beta_V": 0.2567,
+          "gamma_S": 0.2208
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7442,
+        "threshold": 0.7,
+        "margin": 0.0442,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-015",
+      "rts": {
+        "rts_score": 0.8833,
+        "components": {
+          "C_O": 0.85,
+          "V_O": 0.975,
+          "S_O": 0.825
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2833,
+          "beta_V": 0.325,
+          "gamma_S": 0.275
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8833,
+        "threshold": 0.7,
+        "margin": 0.1833,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-016",
+      "rts": {
+        "rts_score": 0.73,
+        "components": {
+          "C_O": 0.695,
+          "V_O": 0.77,
+          "S_O": 0.725
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2317,
+          "beta_V": 0.2567,
+          "gamma_S": 0.2417
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.73,
+        "threshold": 0.7,
+        "margin": 0.03,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-017",
+      "rts": {
+        "rts_score": 0.7833,
+        "components": {
+          "C_O": 0.74,
+          "V_O": 0.835,
+          "S_O": 0.775
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2467,
+          "beta_V": 0.2783,
+          "gamma_S": 0.2583
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7833,
+        "threshold": 0.7,
+        "margin": 0.0833,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-018",
+      "rts": {
+        "rts_score": 0.9283,
+        "components": {
+          "C_O": 0.88,
+          "V_O": 0.98,
+          "S_O": 0.925
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2933,
+          "beta_V": 0.3267,
+          "gamma_S": 0.3083
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.9283,
+        "threshold": 0.7,
+        "margin": 0.2283,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-019",
+      "rts": {
+        "rts_score": 0.7919,
+        "components": {
+          "C_O": 0.7833,
+          "V_O": 0.93,
+          "S_O": 0.6625
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2611,
+          "beta_V": 0.31,
+          "gamma_S": 0.2208
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7919,
+        "threshold": 0.7,
+        "margin": 0.0919,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-020",
+      "rts": {
+        "rts_score": 0.8117,
+        "components": {
+          "C_O": 0.74,
+          "V_O": 0.97,
+          "S_O": 0.725
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2467,
+          "beta_V": 0.3233,
+          "gamma_S": 0.2417
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8117,
+        "threshold": 0.7,
+        "margin": 0.1117,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-021",
+      "rts": {
+        "rts_score": 0.8205,
+        "components": {
+          "C_O": 0.7565,
+          "V_O": 0.98,
+          "S_O": 0.725
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2522,
+          "beta_V": 0.3267,
+          "gamma_S": 0.2417
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8205,
+        "threshold": 0.7,
+        "margin": 0.1205,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-022",
+      "rts": {
+        "rts_score": 0.5797,
+        "components": {
+          "C_O": 0.5615,
+          "V_O": 0.965,
+          "S_O": 0.2125
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.1872,
+          "beta_V": 0.3217,
+          "gamma_S": 0.0708
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.5797,
+        "threshold": 0.7,
+        "deficit": 0.1203,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-023",
+      "rts": {
+        "rts_score": 0.7233,
+        "components": {
+          "C_O": 1.0,
+          "V_O": 0.92,
+          "S_O": 0.25
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.3333,
+          "beta_V": 0.3067,
+          "gamma_S": 0.0833
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7233,
+        "threshold": 0.7,
+        "margin": 0.0233,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-024",
+      "rts": {
+        "rts_score": 0.5276,
+        "components": {
+          "C_O": 0.3603,
+          "V_O": 0.81,
+          "S_O": 0.4125
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.1201,
+          "beta_V": 0.27,
+          "gamma_S": 0.1375
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.5276,
+        "threshold": 0.7,
+        "deficit": 0.1724,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-025",
+      "rts": {
+        "rts_score": 0.6815,
+        "components": {
+          "C_O": 0.5596,
+          "V_O": 0.96,
+          "S_O": 0.525
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.1865,
+          "beta_V": 0.32,
+          "gamma_S": 0.175
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.6815,
+        "threshold": 0.7,
+        "deficit": 0.0185,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-026",
+      "rts": {
+        "rts_score": 0.5693,
+        "components": {
+          "C_O": 0.3653,
+          "V_O": 0.955,
+          "S_O": 0.3875
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.1218,
+          "beta_V": 0.3183,
+          "gamma_S": 0.1292
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.5693,
+        "threshold": 0.7,
+        "deficit": 0.1307,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-027",
+      "rts": {
+        "rts_score": 0.7317,
+        "components": {
+          "C_O": 0.72,
+          "V_O": 0.9,
+          "S_O": 0.575
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.24,
+          "beta_V": 0.3,
+          "gamma_S": 0.1917
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.7317,
+        "threshold": 0.7,
+        "margin": 0.0317,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-028",
+      "rts": {
+        "rts_score": 0.6872,
+        "components": {
+          "C_O": 0.6615,
+          "V_O": 0.925,
+          "S_O": 0.475
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2205,
+          "beta_V": 0.3083,
+          "gamma_S": 0.1583
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.6872,
+        "threshold": 0.7,
+        "deficit": 0.0128,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": false
+    },
+    {
+      "scenario_id": "SC-029",
+      "rts": {
+        "rts_score": 0.5395,
+        "components": {
+          "C_O": 0.5934,
+          "V_O": 0.925,
+          "S_O": 0.1
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.1978,
+          "beta_V": 0.3083,
+          "gamma_S": 0.0333
+        }
+      },
+      "decision": {
+        "decision": "HUMAN_REVIEW",
+        "rts_score": 0.5395,
+        "threshold": 0.7,
+        "deficit": 0.1605,
+        "description": "Low trust \u2014 routing to human analyst"
+      },
+      "correct": true
+    },
+    {
+      "scenario_id": "SC-030",
+      "rts": {
+        "rts_score": 0.8905,
+        "components": {
+          "C_O": 0.8465,
+          "V_O": 0.975,
+          "S_O": 0.85
+        },
+        "weights": {
+          "alpha": 0.3333,
+          "beta": 0.3333,
+          "gamma": 0.3333
+        },
+        "weighted_contributions": {
+          "alpha_C": 0.2822,
+          "beta_V": 0.325,
+          "gamma_S": 0.2833
+        }
+      },
+      "decision": {
+        "decision": "AUTONOMOUS",
+        "rts_score": 0.8905,
+        "threshold": 0.7,
+        "margin": 0.1905,
+        "description": "High trust \u2014 autonomous response allowed"
+      },
+      "correct": true
+    }
+  ]
+}

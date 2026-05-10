@@ -1,0 +1,279 @@
+{
+  "experiment": "Week 5 - Stability Score S(O)",
+  "source": "data/results/guard_consistency_results.json",
+  "timestamp": "2026-04-07T18:06:26.518979",
+  "method": "estimated_from_consistency_passes",
+  "mean_stability": 0.5981,
+  "results": [
+    {
+      "scenario_id": "SC-001",
+      "stability_score": 0.6875,
+      "mean_drift": 0.3125,
+      "classification_stability": 0.75,
+      "severity_stability": 0.8125,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-002",
+      "stability_score": 0.4375,
+      "mean_drift": 0.5625,
+      "classification_stability": 0.25,
+      "severity_stability": 1.0,
+      "technique_stability": 0.375,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-003",
+      "stability_score": 0.6875,
+      "mean_drift": 0.3125,
+      "classification_stability": 0.75,
+      "severity_stability": 0.875,
+      "technique_stability": 0.4583,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-004",
+      "stability_score": 0.6875,
+      "mean_drift": 0.3125,
+      "classification_stability": 1.0,
+      "severity_stability": 0.75,
+      "technique_stability": 0.125,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-005",
+      "stability_score": 0.8125,
+      "mean_drift": 0.1875,
+      "classification_stability": 1.0,
+      "severity_stability": 1.0,
+      "technique_stability": 0.375,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-006",
+      "stability_score": 0.825,
+      "mean_drift": 0.175,
+      "classification_stability": 1.0,
+      "severity_stability": 0.875,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-007",
+      "stability_score": 0.1,
+      "mean_drift": 0.9,
+      "classification_stability": 0.0,
+      "severity_stability": 0.5,
+      "technique_stability": 0.0,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-008",
+      "stability_score": 0.7875,
+      "mean_drift": 0.2125,
+      "classification_stability": 1.0,
+      "severity_stability": 0.75,
+      "technique_stability": 0.4583,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-009",
+      "stability_score": 0.625,
+      "mean_drift": 0.375,
+      "classification_stability": 0.25,
+      "severity_stability": 1.0,
+      "technique_stability": 1.0,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-010",
+      "stability_score": 0.7812,
+      "mean_drift": 0.2188,
+      "classification_stability": 1.0,
+      "severity_stability": 1.0,
+      "technique_stability": 0.2708,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-011",
+      "stability_score": 0.3625,
+      "mean_drift": 0.6375,
+      "classification_stability": 0.0,
+      "severity_stability": 0.9375,
+      "technique_stability": 0.5833,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-012",
+      "stability_score": 0.8375,
+      "mean_drift": 0.1625,
+      "classification_stability": 1.0,
+      "severity_stability": 0.875,
+      "technique_stability": 0.5416,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-013",
+      "stability_score": 0.5,
+      "mean_drift": 0.5,
+      "classification_stability": 0.25,
+      "severity_stability": 1.0,
+      "technique_stability": 0.5833,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-014",
+      "stability_score": 0.6625,
+      "mean_drift": 0.3375,
+      "classification_stability": 0.75,
+      "severity_stability": 0.875,
+      "technique_stability": 0.375,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-015",
+      "stability_score": 0.825,
+      "mean_drift": 0.175,
+      "classification_stability": 1.0,
+      "severity_stability": 1.0,
+      "technique_stability": 0.4166,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-016",
+      "stability_score": 0.725,
+      "mean_drift": 0.275,
+      "classification_stability": 1.0,
+      "severity_stability": 0.9375,
+      "technique_stability": 0.125,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-017",
+      "stability_score": 0.775,
+      "mean_drift": 0.225,
+      "classification_stability": 0.75,
+      "severity_stability": 0.9375,
+      "technique_stability": 0.7083,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-018",
+      "stability_score": 0.925,
+      "mean_drift": 0.075,
+      "classification_stability": 1.0,
+      "severity_stability": 1.0,
+      "technique_stability": 0.75,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-019",
+      "stability_score": 0.6625,
+      "mean_drift": 0.3375,
+      "classification_stability": 0.75,
+      "severity_stability": 0.75,
+      "technique_stability": 0.4583,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-020",
+      "stability_score": 0.725,
+      "mean_drift": 0.275,
+      "classification_stability": 0.75,
+      "severity_stability": 1.0,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-021",
+      "stability_score": 0.725,
+      "mean_drift": 0.275,
+      "classification_stability": 0.75,
+      "severity_stability": 0.8125,
+      "technique_stability": 0.625,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-022",
+      "stability_score": 0.2125,
+      "mean_drift": 0.7875,
+      "classification_stability": 0.0,
+      "severity_stability": 0.875,
+      "technique_stability": 0.125,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-023",
+      "stability_score": 0.25,
+      "mean_drift": 0.75,
+      "classification_stability": 0.0,
+      "severity_stability": 0.5,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-024",
+      "stability_score": 0.4125,
+      "mean_drift": 0.5875,
+      "classification_stability": 0.25,
+      "severity_stability": 0.6875,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-025",
+      "stability_score": 0.525,
+      "mean_drift": 0.475,
+      "classification_stability": 0.5,
+      "severity_stability": 0.625,
+      "technique_stability": 0.5,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-026",
+      "stability_score": 0.3875,
+      "mean_drift": 0.6125,
+      "classification_stability": 0.5,
+      "severity_stability": 0.6875,
+      "technique_stability": 0.0,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-027",
+      "stability_score": 0.575,
+      "mean_drift": 0.425,
+      "classification_stability": 0.25,
+      "severity_stability": 0.9375,
+      "technique_stability": 0.875,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-028",
+      "stability_score": 0.475,
+      "mean_drift": 0.525,
+      "classification_stability": 0.5,
+      "severity_stability": 0.5625,
+      "technique_stability": 0.375,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-029",
+      "stability_score": 0.1,
+      "mean_drift": 0.9,
+      "classification_stability": 0.0,
+      "severity_stability": 0.5,
+      "technique_stability": 0.0,
+      "num_perturbations": 4
+    },
+    {
+      "scenario_id": "SC-030",
+      "stability_score": 0.85,
+      "mean_drift": 0.15,
+      "classification_stability": 0.75,
+      "severity_stability": 0.875,
+      "technique_stability": 1.0,
+      "num_perturbations": 4
+    }
+  ]
+}
